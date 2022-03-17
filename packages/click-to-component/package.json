@@ -5,7 +5,7 @@
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/types.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
