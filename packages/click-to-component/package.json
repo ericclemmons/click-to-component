@@ -2,9 +2,13 @@
   "name": "click-to-component",
   "version": "1.0.0",
   "description": "Option+Click your React/Vue components in your browser to open the source file in VS Code",
-  "source": "src/index.js",
-  "main": "dist/main.js",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types.d.ts",
   "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/ericclemmons/click-to-component/issues"
   },
-  "homepage": "https://github.com/ericclemmons/click-to-component#readme"
+  "homepage": "https://github.com/ericclemmons/click-to-component#readme",
+  "devDependencies": {
+    "tsup": "^5.12.1"
+  }
 }
