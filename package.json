@@ -1,0 +1,32 @@
+{
+  "name": "click-to-component",
+  "version": "1.0.0",
+  "description": "Option+Click your React/Vue components in your browser to open the source file in VS Code",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericclemmons/click-to-component.git"
+  },
+  "keywords": [
+    "react",
+    "vue",
+    "dx",
+    "vscode",
+    "devtools"
+  ],
+  "author": "Eric Clemmons <eric@smarterspam.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericclemmons/click-to-component/issues"
+  },
+  "homepage": "https://github.com/ericclemmons/click-to-component#readme",
+  "devDependencies": {
+    "turbo": "^1.1.6"
+  },
+  "packageManager": "pnpm@6.32.3"
+}
