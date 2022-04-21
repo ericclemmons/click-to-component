@@ -12,8 +12,6 @@ export function getPropsForInstance(instance) {
    */
   const props = {}
 
-  console.log({ instance })
-
   Object.entries(instance.memoizedProps).forEach(([key, value]) => {
     const type = typeof value
 
