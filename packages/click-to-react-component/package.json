@@ -1,0 +1,45 @@
+{
+  "name": "click-to-react-component",
+  "version": "1.0.0",
+  "description": "Option+Click your React components in your browser to open the source file in VS Code",
+  "types": "types.d.ts",
+  "scripts": {
+    "build": "echo \"Fuck build tools\"",
+    "dev": "pnpm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericclemmons/click-to-component.git"
+  },
+  "keywords": [
+    "react",
+    "vue",
+    "dx",
+    "vscode",
+    "devtools"
+  ],
+  "author": "Eric Clemmons <eric@smarterspam.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericclemmons/click-to-component/issues"
+  },
+  "homepage": "https://github.com/ericclemmons/click-to-component#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-dropdown-menu": "^0.1.6",
+    "@radix-ui/react-icons": "^1.1.0",
+    "@stitches/react": "^1.2.7",
+    "htm": "^3.1.0",
+    "react-popper": "^2.2.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.5",
+    "eslint": "^8.0.0",
+    "eslint-config-react-app": "^7.0.1"
+  }
+}

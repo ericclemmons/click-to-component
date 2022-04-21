@@ -3,11 +3,16 @@
   "main": "index.js",
   "scripts": {
     "build": "turbo run build",
+    "env": "env",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "turbo": "^1.1.6"
+    "eslint": "8.13.0",
+    "turbo": "^1.2.2"
   },
-  "packageManager": "pnpm@6.32.3"
+  "packageManager": "pnpm@6.32.3",
+  "dependencies": {
+    "unbuild": "^0.7.3"
+  }
 }
