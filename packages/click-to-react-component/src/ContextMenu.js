@@ -141,10 +141,6 @@ export function ContextMenu({ onClose, target }) {
         border-radius: 3px;
       }
 
-      #click-to-component-dialog ol > * + * {
-        margin-top: 15px;
-      }
-
       #click-to-component-dialog button {
         all: unset;
         display: flex;
@@ -153,6 +149,7 @@ export function ContextMenu({ onClose, target }) {
         background: white;
         padding: 5px;
         border-radius: 3px;
+        font-size: 13px;
       }
 
       #click-to-component-dialog button:hover {
@@ -161,7 +158,7 @@ export function ContextMenu({ onClose, target }) {
       }
 
       #click-to-component-dialog button > * + * {
-        margin-top: 5px;
+        margin-top: 3px;
       }
 
       #click-to-component-dialog button code {
@@ -186,6 +183,7 @@ export function ContextMenu({ onClose, target }) {
       #click-to-component-dialog button cite {
         font-weight: normal;
         font-style: normal;
+        font-size: 11px;
         opacity: 0.5;
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
           'Liberation Mono', 'Courier New', monospace;
