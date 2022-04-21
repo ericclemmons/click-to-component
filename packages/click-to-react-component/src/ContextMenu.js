@@ -266,7 +266,7 @@ export function ContextMenu({ onClose, target }) {
                   </code>
                   <cite>
                     <data value="${source.lineNumber}:${source.columnNumber}">
-                      ${source.fileName}
+                      ${source.fileName.replace(/.*(src|pages)/, '$1')}
                     </data>
                   </cite>
                 </button>
