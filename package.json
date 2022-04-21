@@ -9,10 +9,7 @@
   },
   "devDependencies": {
     "eslint": "8.13.0",
-    "turbo": "^1.2.2"
+    "turbo": "^1.2.5"
   },
-  "packageManager": "pnpm@6.32.3",
-  "dependencies": {
-    "unbuild": "^0.7.3"
-  }
+  "packageManager": "pnpm@6.32.3"
 }
