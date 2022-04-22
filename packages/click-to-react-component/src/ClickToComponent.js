@@ -138,19 +138,21 @@ export function ClickToComponent({ editor }) {
   React.useEffect(
     function toggleIndicator() {
       for (const element of Array.from(
-        document.querySelectorAll('[data-click-to-component]')
+        document.querySelectorAll('[data-click-to-component-target]')
       )) {
         if (element instanceof HTMLElement) {
-          delete element.dataset.clickToComponent
+          delete element.dataset.clickToComponentTarget
         }
       }
 
       if (state === State.IDLE) {
+        delete window.document.body.dataset.clickToComponentTarget
         return
       }
 
       if (target instanceof HTMLElement) {
-        target.dataset.clickToComponent = state
+        window.document.body.dataset.clickToComponent = state
+        target.dataset.clickToComponentTarget = state
       }
     },
     [state, target]
@@ -179,12 +181,18 @@ export function ClickToComponent({ editor }) {
 
   return html`
     <style key="click-to-component-style">
-      [data-click-to-component] {
+      [data-click-to-component] * {
+        pointer-events: auto !important;
+      }
+
+      [data-click-to-component-target] {
         cursor: var(--click-to-component-cursor, context-menu) !important;
         outline: var(
           --click-to-component-outline,
           2px solid lightgreen
         ) !important;
+        outline-offset: -2px;
+        outline-style: inset;
       }
     </style>
 
