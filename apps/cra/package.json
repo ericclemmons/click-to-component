@@ -34,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "click-to-react-component": "workspace:^1.0.0"
   }
 }
