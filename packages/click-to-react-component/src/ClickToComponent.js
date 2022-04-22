@@ -29,6 +29,13 @@ export function ClickToComponent({ editor }) {
     (null)
   )
 
+  const coordsRef = React.useRef(
+    /**
+     * @type {[MouseEvent['clientX'], MouseEvent['clientY']}
+     */
+    ([0, 0])
+  )
+
   const onClick = React.useCallback(
     function handleClick(
       /**
@@ -125,6 +132,7 @@ export function ClickToComponent({ editor }) {
       switch (state) {
         case State.IDLE:
         case State.HOVER:
+          coordsRef.current = [event.clientX, event.clientY]
           setTarget(event.target)
           break
 
@@ -198,6 +206,7 @@ export function ClickToComponent({ editor }) {
 
     ${state === State.SELECT
       ? html`<${ContextMenu}
+          coords=${coordsRef.current}
           key="click-to-component-contextmenu"
           onClose=${onClose}
           target=${target}

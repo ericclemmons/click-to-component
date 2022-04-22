@@ -14,18 +14,23 @@ import { getReactInstancesForElement } from './getReactInstancesForElement'
 import { getSourceForInstance } from './getSourceForInstance'
 import { getPropsForInstance } from './getPropsForInstance'
 
-export function ContextMenu({ onClose, target }) {
+export function ContextMenu({ coords, onClose, target }) {
   const [contextMenuElement, setContextMenuElement] = React.useState(
-    /** {HTMLElement | null} */
-    null
+    /** @type {HTMLElement | null} */
+    (null)
   )
 
   const [arrowElement, setArrowElement] = React.useState(
-    /** {HTMLElement | null} */
-    null
+    /** @type {HTMLElement | null} */
+    (null)
   )
 
-  const { styles, attributes } = usePopper(target, contextMenuElement, {
+  const [coordsElement, setCoordsElement] = React.useState(
+    /** @type {HTMLElement|null} */
+    (null)
+  )
+
+  const { styles, attributes } = usePopper(coordsElement, contextMenuElement, {
     modifiers: [
       {
         name: 'arrow',
@@ -42,8 +47,10 @@ export function ContextMenu({ onClose, target }) {
     // Careful – this can be buggy in strict mode: https://github.com/facebook/react/issues/24399#issuecomment-1104191934
     function toggleContextMenu() {
       if (contextMenuElement) {
+        // @ts-ignore Property 'showModal' does not exist on type 'HTMLElement'.ts(2339)
         contextMenuElement.showModal()
 
+        // @ts-ignore Property 'close' does not exist on type 'HTMLElement'.ts(2339)
         return () => contextMenuElement.close()
       }
     },
@@ -65,10 +72,12 @@ export function ContextMenu({ onClose, target }) {
         event.target instanceof HTMLElement &&
         event.target.nodeName === 'DIALOG'
       ) {
+        // @ts-ignore Property 'close' does not exist on type 'HTMLElement'.ts(2339)
         contextMenuElement.close()
       }
     },
     onClose(event) {
+      //@ts-ignore Property 'returnValue' does not exist on type 'HTMLElement'.ts(2339)
       onClose?.(event, contextMenuElement.returnValue)
     },
     ref: setContextMenuElement,
@@ -102,7 +111,7 @@ export function ContextMenu({ onClose, target }) {
         color: black;
         font-weight: bold;
         overflow: visible;
-        padding: 4px 8px;
+        padding: 0px 5px;
         font-size: 13px;
         border-radius: 6px;
         border: none;
@@ -137,10 +146,6 @@ export function ContextMenu({ onClose, target }) {
         flex-direction: column;
       }
 
-      #click-to-component-dialog ol > li {
-        border-radius: 3px;
-      }
-
       #click-to-component-dialog button {
         all: unset;
         display: flex;
@@ -148,7 +153,7 @@ export function ContextMenu({ onClose, target }) {
         width: 100%;
         background: white;
         padding: 5px;
-        border-radius: 3px;
+        border-radius: 4px;
         font-size: 13px;
       }
 
@@ -237,6 +242,18 @@ export function ContextMenu({ onClose, target }) {
         left: -4px;
       }
     </style>
+
+    <canvas
+      key="click-to-component-canvas"
+      ref=${setCoordsElement}
+      style=${{
+        position: 'absolute',
+        left: coords[0],
+        top: coords[1],
+        width: 1,
+        height: 1,
+      }}
+    />
 
     <dialog
       id="click-to-component-dialog"
