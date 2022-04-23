@@ -41,6 +41,7 @@ export function ContextMenu({ coords, onClose, target }) {
         options: { offset: [0, 8] },
       },
     ],
+    placement: 'right',
   })
 
   React.useEffect(

@@ -31,7 +31,7 @@ export function ClickToComponent({ editor }) {
 
   const coordsRef = React.useRef(
     /**
-     * @type {[MouseEvent['clientX'], MouseEvent['clientY']}
+     * @type {[MouseEvent['pageX'], MouseEvent['pageY']]}
      */
     ([0, 0])
   )
@@ -76,12 +76,17 @@ export function ClickToComponent({ editor }) {
        */
       event
     ) {
+      const { pageX, pageY, target } = event
+
       if (state === State.HOVER && target instanceof HTMLElement) {
         event.preventDefault()
+        coordsRef.current = [pageX, pageY]
+
         setState(State.SELECT)
+        setTarget(target)
       }
     },
-    [state, target]
+    [state]
   )
 
   const onKeyDown = React.useCallback(
@@ -132,7 +137,6 @@ export function ClickToComponent({ editor }) {
       switch (state) {
         case State.IDLE:
         case State.HOVER:
-          coordsRef.current = [event.clientX, event.clientY]
           setTarget(event.target)
           break
 
