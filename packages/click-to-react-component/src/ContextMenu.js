@@ -216,21 +216,12 @@ export const ContextMenu = React.forwardRef(
           filter: drop-shadow(0px 0px 0.5px rgba(0 0 0 / 50%));
         }
 
-        [data-click-to-component-contextmenu] ol {
-          list-style: none;
-          margin: 0;
-          padding: 5px 0;
-          display: flex;
-          flex-direction: column;
-        }
-
         [data-click-to-component-contextmenu] button {
           all: unset;
           outline: 0;
           display: flex;
           flex-direction: column;
           width: 100%;
-          background: white;
           padding: 5px;
           border-radius: 4px;
           font-size: 13px;
@@ -239,7 +230,16 @@ export const ContextMenu = React.forwardRef(
         [data-click-to-component-contextmenu] button:focus,
         [data-click-to-component-contextmenu] button:not([disabled]):active {
           cursor: pointer;
-          filter: invert(1) hue-rotate(180deg) contrast(0.9);
+          background: royalblue;
+          color: white;
+          box-shadow: var(--shadow-elevation-medium);
+        }
+
+        [data-click-to-component-contextmenu] button:focus code,
+        [data-click-to-component-contextmenu]
+          button:not([disabled]):active
+          code {
+          color: white;
         }
 
         [data-click-to-component-contextmenu] button > * + * {
@@ -247,7 +247,7 @@ export const ContextMenu = React.forwardRef(
         }
 
         [data-click-to-component-contextmenu] button code {
-          color: rgb(87, 70, 175);
+          color: royalblue;
           font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             'Liberation Mono', 'Courier New', monospace;
         }
