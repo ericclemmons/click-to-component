@@ -1,13 +1,15 @@
 /**
  * @typedef {import('../types').ClickToComponentProps} Props
+ * @typedef {import('../types').Coords} Coords
  */
 
+import { FloatingPortal } from '@floating-ui/react-dom-interactions'
 import { html } from 'htm/react'
 import * as React from 'react'
 
 import { ContextMenu } from './ContextMenu'
-import { getSourceForElement } from './getSourceForElement'
 import { getPathToSource } from './getPathToSource'
+import { getSourceForElement } from './getSourceForElement'
 
 export const State = /** @type {const} */ ({
   IDLE: 'IDLE',
@@ -27,13 +29,6 @@ export function ClickToComponent({ editor }) {
   const [target, setTarget] = React.useState(
     /** @type {HTMLElement | null} */
     (null)
-  )
-
-  const coordsRef = React.useRef(
-    /**
-     * @type {[MouseEvent['pageX'], MouseEvent['pageY']]}
-     */
-    ([0, 0])
   )
 
   const onClick = React.useCallback(
@@ -58,7 +53,7 @@ export function ClickToComponent({ editor }) {
   )
 
   const onClose = React.useCallback(
-    function handleClose(event, returnValue) {
+    function handleClose(returnValue) {
       if (returnValue) {
         const url = `${editor}://file/${returnValue}`
         window.open(url)
@@ -76,11 +71,10 @@ export function ClickToComponent({ editor }) {
        */
       event
     ) {
-      const { pageX, pageY, target } = event
+      const { target } = event
 
       if (state === State.HOVER && target instanceof HTMLElement) {
         event.preventDefault()
-        coordsRef.current = [pageX, pageY]
 
         setState(State.SELECT)
         setTarget(target)
@@ -208,13 +202,11 @@ export function ClickToComponent({ editor }) {
       }
     </style>
 
-    ${state === State.SELECT
-      ? html`<${ContextMenu}
-          coords=${coordsRef.current}
-          key="click-to-component-contextmenu"
-          onClose=${onClose}
-          target=${target}
-        />`
-      : null}
+    <${FloatingPortal} key="click-to-component-portal">
+      ${html`<${ContextMenu}
+        key="click-to-component-contextmenu"
+        onClose=${onClose}
+      />`}
+    </${FloatingPortal}
   `
 }

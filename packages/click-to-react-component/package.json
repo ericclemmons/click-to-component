@@ -29,13 +29,9 @@
     "react": ">=16.8.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.5",
-    "@radix-ui/colors": "^0.1.8",
-    "@radix-ui/react-dropdown-menu": "^0.1.6",
-    "@radix-ui/react-icons": "^1.1.0",
-    "@stitches/react": "^1.2.7",
+    "@floating-ui/react-dom-interactions": "^0.3.1",
     "htm": "^3.1.0",
-    "react-popper": "^2.2.5"
+    "react-merge-refs": "^1.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.6",
