@@ -12,6 +12,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { ClickToComponent } from "click-to-react-component";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
@@ -48,6 +49,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <ClickToComponent editor="vscode-insiders" />
       </body>
     </html>
   );
