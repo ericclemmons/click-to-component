@@ -157,6 +157,7 @@ export const ContextMenu = React.forwardRef(
       }[placement.split('-')[0]]
 
       Object.assign(arrowRef.current.style, {
+        display: 'block',
         left: arrowX != null ? `${arrowX}px` : '',
         top: arrowY != null ? `${arrowY}px` : '',
         right: '',
@@ -284,6 +285,7 @@ export const ContextMenu = React.forwardRef(
         }
 
         [data-click-to-component-contextmenu-arrow] {
+          display: none;
           position: absolute;
           background: inherit;
           width: 8px;
