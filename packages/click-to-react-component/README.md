@@ -5,10 +5,15 @@
 
 <kbd>Option+Click</kbd> a Component in the browser to **instantly** goto the source in your editor.
 
+![Next.js Demo](next.gif)
+
 ## Features
 
 - <kbd>Option+Click</kbd> opens the immediate Component's source
 - <kbd>Option+Right-click</kbd> opens a context menu with the parent Components' props, filename, column, and line number
+
+  > ![props](props.png)
+
 - Works with frameworks like [Next.js](https://nextjs.org/),
   [Create React App](https://create-react-app.dev/),
   & [Remix](https://remix.run/) that uses [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
@@ -69,6 +74,8 @@ Even though `click-to-react-component` is added to `dependencies`, [tree-shaking
  );
 ```
 
+> ![Create React App Demo](cra.gif)
+
 </details>
 
 <details>
@@ -89,6 +96,8 @@ Even though `click-to-react-component` is added to `dependencies`, [tree-shaking
      </>
    )
 ```
+
+> ![Next.js Demo](next.gif)
 
 </details>
 
