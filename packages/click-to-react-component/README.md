@@ -19,7 +19,7 @@
   & [Vite](https://github.com/vitejs/vite/tree/main/packages/plugin-react)
   that use [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
 - Supports `vscode` & `vscode-insiders`' [URL handling](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls)
-- Automatically **eliminated** from `production` builds
+- Automatically **tree-shaken** from `production` builds
 - Keyboard navigation in context menu (e.g. <kbd>←</kbd>, <kbd>→</kbd>, <kbd>⏎</kbd>)
 
 ## Installation
