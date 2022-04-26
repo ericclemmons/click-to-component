@@ -2,7 +2,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter=click-to-*-component",
     "env": "env",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
