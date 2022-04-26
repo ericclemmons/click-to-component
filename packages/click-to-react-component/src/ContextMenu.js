@@ -167,7 +167,7 @@ export const ContextMenu = React.forwardRef(
     }, [arrowX, arrowY, placement])
 
     if (!target) {
-      return
+      return null
     }
 
     const instances = getReactInstancesForElement(target).filter((instance) =>
