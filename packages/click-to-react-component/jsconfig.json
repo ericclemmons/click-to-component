@@ -2,8 +2,11 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "checkJs": true,
-    "module": "NodeNext",
+    // https://github.com/microsoft/TypeScript/issues/23219#issuecomment-773555768
+    "maxNodeModuleJsDepth": 0,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": true,
     "noImplicitThis": true
-  },
-  "exclude": ["node_modules", "**/node_modules/*"]
+  }
 }
