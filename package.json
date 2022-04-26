@@ -2,12 +2,15 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter=click-to-*-component",
     "env": "env",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "prerelease": "turbo run build",
+    "release": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.22.0",
     "eslint": "8.13.0",
     "turbo": "^1.2.5"
   },
