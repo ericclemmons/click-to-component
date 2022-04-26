@@ -2,7 +2,7 @@
  * @typedef {import('react-reconciler').Fiber} Fiber
  */
 
-import { getReactInstanceForElement } from './getReactInstanceForElement'
+import { getReactInstanceForElement } from './getReactInstanceForElement.mjs'
 
 export function getReactInstancesForElement(
   /** @type {HTMLElement} */

@@ -7,9 +7,9 @@ import { FloatingPortal } from '@floating-ui/react-dom-interactions'
 import { html } from 'htm/react'
 import * as React from 'react'
 
-import { ContextMenu } from './ContextMenu'
-import { getPathToSource } from './getPathToSource'
-import { getSourceForElement } from './getSourceForElement'
+import { ContextMenu } from './ContextMenu.mjs'
+import { getPathToSource } from './getPathToSource.mjs'
+import { getSourceForElement } from './getSourceForElement.mjs'
 
 export const State = /** @type {const} */ ({
   IDLE: 'IDLE',
