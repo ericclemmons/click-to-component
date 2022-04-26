@@ -8,6 +8,7 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.22.0",
     "eslint": "8.13.0",
     "turbo": "^1.2.5"
   },
