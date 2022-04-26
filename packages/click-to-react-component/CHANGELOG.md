@@ -1,5 +1,13 @@
 # click-to-react-component
 
+## 1.0.5
+
+### Patch Changes
+
+- 5cad12c: Update README with demos
+- 10fc042: Return `null` instead of `undefined` to fix React warning
+- 361b076: Only publish `src` files
+
 ## 1.0.4
 
 ### Patch Changes
