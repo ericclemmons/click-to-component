@@ -5,7 +5,9 @@
     "build": "turbo run build",
     "env": "env",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "prerelease": "turbo run build",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
