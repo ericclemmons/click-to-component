@@ -3,6 +3,7 @@
   "name": "click-to-react-component",
   "version": "1.0.3",
   "description": "Option+Click your React components in your browser to open the source file in VS Code",
+  "exports": "./index.js",
   "types": "types.d.ts",
   "scripts": {
     "build": "echo \"Fuck build tools\"",
