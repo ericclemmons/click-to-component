@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "click-to-react-component",
   "version": "1.0.1",
   "description": "Option+Click your React components in your browser to open the source file in VS Code",

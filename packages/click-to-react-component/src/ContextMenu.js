@@ -23,11 +23,11 @@ import { html } from 'htm/react'
 import * as React from 'react'
 import mergeRefs from 'react-merge-refs'
 
-import { getDisplayNameForInstance } from './getDisplayNameFromReactInstance.mjs'
-import { getPathToSource } from './getPathToSource.mjs'
-import { getPropsForInstance } from './getPropsForInstance.mjs'
-import { getReactInstancesForElement } from './getReactInstancesForElement.mjs'
-import { getSourceForInstance } from './getSourceForInstance.mjs'
+import { getDisplayNameForInstance } from './getDisplayNameFromReactInstance.js'
+import { getPathToSource } from './getPathToSource.js'
+import { getPropsForInstance } from './getPropsForInstance.js'
+import { getReactInstancesForElement } from './getReactInstancesForElement.js'
+import { getSourceForInstance } from './getSourceForInstance.js'
 
 export const ContextMenu = React.forwardRef(
   (

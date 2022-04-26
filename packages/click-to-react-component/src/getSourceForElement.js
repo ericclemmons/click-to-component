@@ -1,5 +1,5 @@
-import { getReactInstanceForElement } from './getReactInstanceForElement.mjs'
-import { getSourceForInstance } from './getSourceForInstance.mjs'
+import { getReactInstanceForElement } from './getReactInstanceForElement.js'
+import { getSourceForInstance } from './getSourceForInstance.js'
 
 /**
  * @typedef {import('react-reconciler').Fiber} Fiber
