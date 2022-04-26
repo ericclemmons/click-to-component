@@ -10,7 +10,7 @@
 ## Features
 
 - <kbd>Option+Click</kbd> opens the immediate Component's source
-- <kbd>Option+Right-click</kbd> opens a context menu with the parent Components' props, filename, column, and line number
+- <kbd>Option+Right-click</kbd> opens a context menu with the parent Components' `props`, `fileName`, `columnNumber`, and `lineNumber`
 
   > ![props](props.png)
 
