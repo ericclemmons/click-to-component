@@ -1,4 +1,4 @@
-# Click to Component
+# <ClickToComponent />
 
 [![npm](https://img.shields.io/npm/v/click-to-react-component)](https://www.npmjs.com/package/click-to-react-component)
 [![Release](https://github.com/ericclemmons/click-to-component/actions/workflows/release.yml/badge.svg)](https://github.com/ericclemmons/click-to-component/actions/workflows/release.yml)
