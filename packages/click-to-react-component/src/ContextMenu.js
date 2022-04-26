@@ -2,7 +2,7 @@
  * @typedef {import('react').DialogHTMLAttributes} DialogHTMLAttributes
  * @typedef {import('react').HTMLAttributes} HTMLAttributes
  * @typedef {import('react').MouseEvent<HTMLElement, MouseEvent>} ReactMouseEvent}
- * @typedef {import('../types').ContextMenuProps} Props
+ * @typedef {import('./types').ContextMenuProps} Props
  */
 
 import {

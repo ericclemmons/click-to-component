@@ -157,6 +157,7 @@ importers:
     specifiers:
       '@floating-ui/react-dom-interactions': ^0.3.1
       '@types/react': ^18.0.6
+      '@types/react-reconciler': ^0.26.6
       eslint: ^8.0.0
       eslint-config-react-app: ^7.0.1
       htm: ^3.1.0
@@ -167,6 +168,7 @@ importers:
       react-merge-refs: 1.1.0
     devDependencies:
       '@types/react': 18.0.6
+      '@types/react-reconciler': 0.26.6
       eslint: 8.13.0
       eslint-config-react-app: 7.0.1_eslint@8.13.0
 
@@ -3314,6 +3316,12 @@ packages:
     dependencies:
       '@types/react': 18.0.6
     dev: false
+
+  /@types/react-reconciler/0.26.6:
+    resolution: {integrity: sha512-N8MpyC6PJksD+CbMaZ1GW1t940+L4K+f7soiNKcKfgOgof3xWLvs5nPRQ/Q0P6QwDX0GH1PT1MsiQh2FtUY6aw==}
+    dependencies:
+      '@types/react': 18.0.6
+    dev: true
 
   /@types/react/17.0.44:
     resolution: {integrity: sha512-Ye0nlw09GeMp2Suh8qoOv0odfgCoowfM/9MG6WeRD60Gq9wS90bdkdRtYbRkNhXOpG4H+YXGvj4wOWhAC0LJ1g==}
