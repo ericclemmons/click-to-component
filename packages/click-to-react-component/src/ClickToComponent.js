@@ -20,7 +20,7 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor }) {
+export function ClickToComponent({ editor = 'vscode' }) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
