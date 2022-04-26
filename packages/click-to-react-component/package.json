@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "click-to-react-component",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Option+Click your React components in your browser to open the source file in VS Code",
   "types": "types.d.ts",
   "scripts": {
