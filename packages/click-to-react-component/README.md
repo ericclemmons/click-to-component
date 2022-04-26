@@ -1,19 +1,25 @@
-# Click to Component
+# <ClickToComponent />
 
 [![npm](https://img.shields.io/npm/v/click-to-react-component)](https://www.npmjs.com/package/click-to-react-component)
 [![Release](https://github.com/ericclemmons/click-to-component/actions/workflows/release.yml/badge.svg)](https://github.com/ericclemmons/click-to-component/actions/workflows/release.yml)
 
 <kbd>Option+Click</kbd> a Component in the browser to **instantly** goto the source in your editor.
 
+![Next.js Demo](next.gif)
+
 ## Features
 
 - <kbd>Option+Click</kbd> opens the immediate Component's source
 - <kbd>Option+Right-click</kbd> opens a context menu with the parent Components' props, filename, column, and line number
+
+  > ![props](props.png)
+
 - Works with frameworks like [Next.js](https://nextjs.org/),
   [Create React App](https://create-react-app.dev/),
-  & [Remix](https://remix.run/) that uses [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
+  & [Vite](https://github.com/vitejs/vite/tree/main/packages/plugin-react)
+  that use [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
 - Supports `vscode` & `vscode-insiders`' [URL handling](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls)
-- Automatically **eliminated** from `production` builds
+- Automatically **tree-shaken** from `production` builds
 - Keyboard navigation in context menu (e.g. <kbd>←</kbd>, <kbd>→</kbd>, <kbd>⏎</kbd>)
 
 ## Installation
@@ -63,11 +69,13 @@ Even though `click-to-react-component` is added to `dependencies`, [tree-shaking
  const root = ReactDOM.createRoot(document.getElementById('root'));
  root.render(
    <React.StrictMode>
-+    <ClickToComponent editor="vscode-insiders" />
++    <ClickToComponent />
      <App />
    </React.StrictMode>
  );
 ```
+
+> ![Create React App Demo](cra.gif)
 
 </details>
 
@@ -84,13 +92,48 @@ Even though `click-to-react-component` is added to `dependencies`, [tree-shaking
  function MyApp({ Component, pageProps }: AppProps) {
    return (
      <>
-+      <ClickToComponent editor="vscode-insiders" />
++      <ClickToComponent />
        <Component {...pageProps} />
      </>
    )
 ```
 
+> ![Next.js Demo](next.gif)
+
 </details>
+
+<details>
+<summary>Vite</summary>
+
+```diff
++import { ClickToComponent } from "click-to-react-component";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
++   <ClickToComponent />
+  </React.StrictMode>
+);
+```
+
+> ![Vite Demo](vite.gif)
+
+</details>
+
+### `editor`
+
+By default, clicking will deafult `editor` to [`vscode`](https://code.visualstudio.com/).
+
+If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/), you can set `editor` explicitly:
+
+```diff
+-<ClickToComponent />
++<ClickToComponent editor="vscode-insiders" />
+```
 
 ## Run Locally
 
