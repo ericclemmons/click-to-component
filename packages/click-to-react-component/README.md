@@ -69,7 +69,7 @@ Even though `click-to-react-component` is added to `dependencies`, [tree-shaking
  const root = ReactDOM.createRoot(document.getElementById('root'));
  root.render(
    <React.StrictMode>
-+    <ClickToComponent editor="vscode-insiders" />
++    <ClickToComponent />
      <App />
    </React.StrictMode>
  );
@@ -92,7 +92,7 @@ Even though `click-to-react-component` is added to `dependencies`, [tree-shaking
  function MyApp({ Component, pageProps }: AppProps) {
    return (
      <>
-+      <ClickToComponent editor="vscode-insiders" />
++      <ClickToComponent />
        <Component {...pageProps} />
      </>
    )
@@ -123,6 +123,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 > ![Vite Demo](vite.gif)
 
 </details>
+
+### `editor`
+
+By default, clicking will deafult `editor` to [`vscode`](https://code.visualstudio.com/).
+
+If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/), you can set `editor` explicitly:
+
+```diff
+-<ClickToComponent />
++<ClickToComponent editor="vscode-insiders" />
+```
 
 ## Run Locally
 
