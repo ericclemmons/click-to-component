@@ -1,5 +1,13 @@
 # click-to-react-component
 
+## 1.0.6
+
+### Patch Changes
+
+- 66606f2: - Fix file references
+  - Fix types references
+  - Add `lint` script to `click-to-react-component`
+
 ## 1.0.5
 
 ### Patch Changes
