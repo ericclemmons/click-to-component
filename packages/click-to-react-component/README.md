@@ -21,6 +21,9 @@
 - Supports `vscode` & `vscode-insiders`' [URL handling](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls)
 - Automatically **tree-shaken** from `production` builds
 - Keyboard navigation in context menu (e.g. <kbd>←</kbd>, <kbd>→</kbd>, <kbd>⏎</kbd>)
+- More context & faster than using React DevTools:
+
+  > ![React DevTools](devtools.png)
 
 ## Installation
 
