@@ -16,7 +16,8 @@
 
 - Works with frameworks like [Next.js](https://nextjs.org/),
   [Create React App](https://create-react-app.dev/),
-  & [Remix](https://remix.run/) that uses [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
+  & [Vite](https://github.com/vitejs/vite/tree/main/packages/plugin-react)
+  that use [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
 - Supports `vscode` & `vscode-insiders`' [URL handling](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls)
 - Automatically **eliminated** from `production` builds
 - Keyboard navigation in context menu (e.g. <kbd>←</kbd>, <kbd>→</kbd>, <kbd>⏎</kbd>)
@@ -98,6 +99,28 @@ Even though `click-to-react-component` is added to `dependencies`, [tree-shaking
 ```
 
 > ![Next.js Demo](next.gif)
+
+</details>
+
+<details>
+<summary>Vite</summary>
+
+```diff
++import { ClickToComponent } from "click-to-react-component";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
++   <ClickToComponent />
+  </React.StrictMode>
+);
+```
+
+> ![Vite Demo](vite.gif)
 
 </details>
 
