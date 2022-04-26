@@ -4,8 +4,8 @@
 
 ### Patch Changes
 
-- 3661b25: - Use "type": "module"
-  - Default `editor` to `vscode`
+- 65faad29a82e5a772423bb83cd431de67705377e: Use "type": "module"
+- 10125adb511e3164ae7cdf9642864d5bf51503fc: Default `editor` to `vscode`
 
 ## 1.0.1
 
