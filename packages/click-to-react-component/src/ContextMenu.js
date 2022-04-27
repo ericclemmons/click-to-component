@@ -183,6 +183,7 @@ export const ContextMenu = React.forwardRef(
         [data-click-to-component-contextmenu],
         [data-click-to-component-contextmenu] * {
           box-sizing: border-box !important;
+          z-index: 2147483647;
         }
 
         [data-click-to-component-contextmenu] {
