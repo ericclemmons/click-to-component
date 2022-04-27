@@ -138,6 +138,15 @@ If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/
 +<ClickToComponent editor="vscode-insiders" />
 ```
 
+### `onOpenFile`
+
+If set, the callback will be invoked instead of opening the editor.
+
+```diff
+-<ClickToComponent />
++<ClickToComponent onOpenFile={alert} />
+```
+
 ## Run Locally
 
 Clone the project
