@@ -1,5 +1,11 @@
 # click-to-react-component
 
+## 1.0.7
+
+### Patch Changes
+
+- 3ae6fcf: Show menu only on Option+Right-click
+
 ## 1.0.6
 
 ### Patch Changes
