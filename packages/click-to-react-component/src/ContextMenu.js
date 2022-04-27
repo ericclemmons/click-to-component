@@ -113,6 +113,10 @@ export const ContextMenu = React.forwardRef(
         /** @type {MouseEvent} */
         e
       ) {
+        if (!e.altKey) {
+          return
+        }
+
         e.preventDefault()
         mergedReferenceRef({
           getBoundingClientRect() {
