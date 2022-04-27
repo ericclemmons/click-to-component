@@ -1,9 +1,12 @@
+import { Source as ReactReconcilerSource } from 'react-reconciler'
+
 export { ClickToComponent } from './src/ClickToComponent'
 
 export type Editor = 'vscode' | 'vscode-insiders'
 
 export type ClickToComponentProps = {
   editor?: Editor
+  getPathToSource?: (source: ReactReconcilerSource) => string
 }
 
 export type Coords = [MouseEvent['pageX'], MouseEvent['pageY']]
