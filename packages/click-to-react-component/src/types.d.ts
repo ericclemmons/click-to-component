@@ -4,6 +4,7 @@ export type Editor = 'vscode' | 'vscode-insiders'
 
 export type ClickToComponentProps = {
   editor?: Editor
+  onOpenFile?: (path: string) => void
 }
 
 export type Coords = [MouseEvent['pageX'], MouseEvent['pageY']]
