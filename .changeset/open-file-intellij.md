@@ -2,4 +2,4 @@
 "click-to-react-component": patch
 ---
 
-Support for OpenFile to Intellij
+Added Support for OpenFile to Intellij
