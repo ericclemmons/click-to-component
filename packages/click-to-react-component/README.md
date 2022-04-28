@@ -31,7 +31,7 @@
 <summary>npm</summary>
 
 ```shell
-npm install click-to-react-component
+npm install click-to-component-intellij
 ```
 
 </details>
@@ -40,7 +40,7 @@ npm install click-to-react-component
 <summary>pnpm</summary>
 
 ```shell
-pnpm add click-to-react-component
+pnpm add click-to-component-intellij
 ```
 
 </details>
@@ -49,7 +49,7 @@ pnpm add click-to-react-component
 <summary>yarn</summary>
 
 ```shell
-yarn add click-to-react-component
+yarn add click-to-component-intellij
 ```
 
 </details>
