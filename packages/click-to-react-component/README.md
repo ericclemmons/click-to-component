@@ -129,9 +129,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 ### `editor`
 
-By default, clicking will deafult `editor` to [`vscode`](https://code.visualstudio.com/).
+By default, clicking will deafult `editor` to [`intellij`](https://code.visualstudio.com/).
 
-If, like me, you use [`intellij`](https://code.visualstudio.com/insiders/), you can set `intellij` explicitly:
+you can set `vscode` explicitly:
 
 ```diff
 -<ClickToComponent />
