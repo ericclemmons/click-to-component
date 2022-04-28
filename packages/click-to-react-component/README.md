@@ -28,7 +28,7 @@
 <summary>npm</summary>
 
 ```shell
-npm install click-to-component-intellij
+npm install click-to-react-component
 ```
 
 </details>
@@ -37,7 +37,7 @@ npm install click-to-component-intellij
 <summary>pnpm</summary>
 
 ```shell
-pnpm add click-to-component-intellij
+pnpm add click-to-react-component
 ```
 
 </details>
@@ -46,7 +46,7 @@ pnpm add click-to-component-intellij
 <summary>yarn</summary>
 
 ```shell
-yarn add click-to-component-intellij
+yarn add click-to-react-component
 ```
 
 </details>
@@ -126,13 +126,21 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 ### `editor`
 
-By default, clicking will deafult `editor` to [`intellij`](https://code.visualstudio.com/).
+By default, clicking will deafult `editor` to [`vscode`](https://code.visualstudio.com/).
 
-you can set `vscode` explicitly:
+
+If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/), you can set `editor` explicitly:
 
 ```diff
 -<ClickToComponent />
-+<ClickToComponent editor="vscode" />
++<ClickToComponent editor="vscode-insiders" />
+```
+
+If, you use [`intellij`], you can set `editor` explicitly:
+
+```diff
+-<ClickToComponent />
++<ClickToComponent editor="intellij" />
 ```
 
 ## Run Locally

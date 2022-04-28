@@ -13,18 +13,5 @@
     "eslint": "8.13.0",
     "turbo": "^1.2.5"
   },
-  "packageManager": "pnpm@6.32.3",
-  "name": "click-to-component-intellij",
-  "version": "1.0.1",
-  "description": "Component in the browser to instantly goto the source in your editor.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SkazyNC/click-to-component-intellij.git"
-  },
-  "author": "abay",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SkazyNC/click-to-component-intellij/issues"
-  },
-  "homepage": "https://github.com/SkazyNC/click-to-component-intellij#readme"
+  "packageManager": "pnpm@6.32.3"
 }
