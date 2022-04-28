@@ -20,7 +20,7 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor = 'vscode', onOpenFile }) {
+export function ClickToComponent({ editor = 'vscode', onOpenComponent }) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
@@ -39,21 +39,21 @@ export function ClickToComponent({ editor = 'vscode', onOpenFile }) {
       event
     ) {
       if (state === State.HOVER && target instanceof HTMLElement) {
-        const source = getSourceForElement(target)
-        const path = getPathToSource(source)
-        const url = `${editor}://file/${path}`
-
         event.preventDefault()
-        if (onOpenFile) {
-          onOpenFile(path)
+
+        const source = getSourceForElement(target)
+        if (onOpenComponent) {
+          onOpenComponent(source)
         } else {
+          const path = getPathToSource(source)
+          const url = `${editor}://file/${path}`
           window.open(url)
         }
 
         setState(State.IDLE)
       }
     },
-    [editor, onOpenFile, state, target]
+    [editor, onOpenComponent, state, target]
   )
 
   const onClose = React.useCallback(

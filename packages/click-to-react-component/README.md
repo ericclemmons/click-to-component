@@ -138,13 +138,13 @@ If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/
 +<ClickToComponent editor="vscode-insiders" />
 ```
 
-### `onOpenFile`
+### `onOpenComponent`
 
 If set, the callback will be invoked instead of opening the editor.
 
 ```diff
 -<ClickToComponent />
-+<ClickToComponent onOpenFile={alert} />
++<ClickToComponent onOpenComponent={(source) => alert(source.fileName)} />
 ```
 
 ## Run Locally

@@ -2,4 +2,4 @@
 'click-to-react-component': minor
 ---
 
-Added onOpenFile prop
+Added onOpenComponent prop
