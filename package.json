@@ -15,7 +15,7 @@
   },
   "packageManager": "pnpm@6.32.3",
   "name": "click-to-component-intellij",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Component in the browser to instantly goto the source in your editor.",
   "repository": {
     "type": "git",
