@@ -131,11 +131,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 By default, clicking will deafult `editor` to [`vscode`](https://code.visualstudio.com/).
 
-If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/), you can set `editor` explicitly:
+If, like me, you use [`intellij`](https://code.visualstudio.com/insiders/), you can set `intellij` explicitly:
 
 ```diff
 -<ClickToComponent />
-+<ClickToComponent editor="vscode-insiders" />
++<ClickToComponent editor="intellij" />
 ```
 
 ## Run Locally
