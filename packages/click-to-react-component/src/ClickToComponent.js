@@ -41,11 +41,8 @@ export function ClickToComponent({ editor = 'vscode' }) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
         const path = getPathToSource(source)
-        const url = `${editor}://file/${path}`
-
         event.preventDefault()
-        window.open(url)
-
+        openFileInIDE(path)
         setState(State.IDLE)
       }
     },
@@ -55,14 +52,25 @@ export function ClickToComponent({ editor = 'vscode' }) {
   const onClose = React.useCallback(
     function handleClose(returnValue) {
       if (returnValue) {
-        const url = `${editor}://file/${returnValue}`
-        window.open(url)
+        openFileInIDE(returnValue)
       }
-
       setState(State.IDLE)
     },
     [editor]
   )
+
+  const openFileInIDE = (file) => {
+    if (editor === 'intellij') {
+      const url = `http://localhost:63342/api/file/${file}`
+      const cmd = window.open(url)
+      setTimeout(function() {
+        cmd.close();
+      }, 100);
+    } else {
+      const url = `${editor}://file/${file}`
+      window.open(url)
+    }
+  }
 
   const onContextMenu = React.useCallback(
     function handleContextMenu(
