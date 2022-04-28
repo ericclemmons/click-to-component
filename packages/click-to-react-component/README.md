@@ -135,7 +135,7 @@ you can set `vscode` explicitly:
 
 ```diff
 -<ClickToComponent />
-+<ClickToComponent editor="intellij" />
++<ClickToComponent editor="vscode" />
 ```
 
 ## Run Locally
