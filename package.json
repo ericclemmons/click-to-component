@@ -1,4 +1,5 @@
 {
+  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "turbo run build --filter=click-to-*-component",
