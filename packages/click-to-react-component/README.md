@@ -129,7 +129,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 ### `editor`
 
-By default, clicking will deafult `editor` to [`vscode`](https://code.visualstudio.com/).
+By default, clicking will default `editor` to [`vscode`](https://code.visualstudio.com/).
 
 If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/), you can set `editor` explicitly:
 
