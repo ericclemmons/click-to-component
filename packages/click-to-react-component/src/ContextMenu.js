@@ -35,7 +35,7 @@ export const ContextMenu = React.forwardRef(
     props,
     ref
   ) => {
-    const { onClose } = props
+    const { IDE, onClose, onChangeIDE } = props
 
     const [target, setTarget] = React.useState(
       /** @type {HTMLElement | null} */
@@ -296,6 +296,20 @@ export const ContextMenu = React.forwardRef(
           height: 8px;
           transform: rotate(45deg);
         }
+
+        [data-click-to-component-contextmenu-change-editor] {
+          text-align: right;
+          font-size: 11px;
+          border-top: 1px solid #ccc;
+          padding-top: 5px;
+          margin-top: 5px;
+          font-weight: 600;
+        }
+
+        [data-click-to-component-contextmenu-change-editor] a {
+          text-decoration: underline;
+          margin-left: 10px;
+        }
       </style>
 
       ${open &&
@@ -363,7 +377,12 @@ export const ContextMenu = React.forwardRef(
                   `
                 })}
               </form>
-
+              <div data-click-to-component-contextmenu-change-editor>
+                default editor is ${IDE}
+                <a onClick=${function handleChangeIDE() {
+                  onChangeIDE()
+                }}>change</a>
+              </div>
               <div
                 data-click-to-component-contextmenu-arrow
                 ref=${arrowRef}

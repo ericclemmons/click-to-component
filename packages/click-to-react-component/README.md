@@ -129,20 +129,20 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 ### `editor`
 
-By default, clicking will deafult `editor` to [`vscode`](https://code.visualstudio.com/).
+By default, clicking will default `editor` to [`vscode`](https://code.visualstudio.com/).
+
+You can change default `editor` in the context menu <kbd>Option+Right-click</kbd>
+
+Possible values for the `editor` are [`vscode`] or [`vscode-insiders`] or [`intellij`]
+
+If you use [`intellij`], the IDE need to be active to open the file
+
 
 If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/), you can set `editor` explicitly:
 
 ```diff
 -<ClickToComponent />
 +<ClickToComponent editor="vscode-insiders" />
-```
-
-If, you use [`intellij`], you can set `editor` explicitly:
-
-```diff
--<ClickToComponent />
-+<ClickToComponent editor="intellij" />
 ```
 
 ## Run Locally

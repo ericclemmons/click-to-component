@@ -21,6 +21,8 @@ export const State = /** @type {const} */ ({
  * @param {Props} props
  */
 export function ClickToComponent({ editor = 'vscode' }) {
+  const localStorageKey = 'clickToComponentEditorUsed'
+  const [IDE, setIDE] = React.useState(localStorage.getItem(localStorageKey) || editor)
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
@@ -40,13 +42,15 @@ export function ClickToComponent({ editor = 'vscode' }) {
     ) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
-        const path = getPathToSource(source)
-        event.preventDefault()
-        openFileInIDE(path)
-        setState(State.IDLE)
+        if (source) {
+          const path = getPathToSource(source)
+          event.preventDefault()
+          openFileInIDE(path)
+          setState(State.IDLE)
+        }
       }
     },
-    [editor, state, target]
+    [IDE, state, target]
   )
 
   const onClose = React.useCallback(
@@ -56,18 +60,24 @@ export function ClickToComponent({ editor = 'vscode' }) {
       }
       setState(State.IDLE)
     },
-    [editor]
+    [IDE]
   )
 
+  const onChangeIDE = () => {
+    const value = prompt("What editor do you use ? vscode | vscode-insiders | intellij\n\ninfo: intellij need to be open before", IDE)
+    localStorage.setItem(localStorageKey, value)
+    setIDE(value)
+  }
+
   const openFileInIDE = (file) => {
-    if (editor === 'intellij') {
+    if (IDE === 'intellij') {
       const url = `http://localhost:63342/api/file/${file}`
       const cmd = window.open(url)
       setTimeout(function() {
-        cmd.close();
-      }, 100);
+        cmd.close()
+      }, 100)
     } else {
-      const url = `${editor}://file/${file}`
+      const url = `${IDE}://file/${file}`
       window.open(url)
     }
   }
@@ -213,7 +223,9 @@ export function ClickToComponent({ editor = 'vscode' }) {
     <${FloatingPortal} key="click-to-component-portal">
       ${html`<${ContextMenu}
         key="click-to-component-contextmenu"
+        IDE=${IDE}
         onClose=${onClose}
+        onChangeIDE=${onChangeIDE}
       />`}
     </${FloatingPortal}
   `
