@@ -152,7 +152,12 @@ export function ClickToComponent({ editor = 'vscode' }) {
       }
 
       if (state === State.IDLE) {
-        delete window.document.body.dataset.clickToComponentTarget
+        delete window.document.body.dataset.clickToComponent
+        
+        if (target) {
+          delete target.dataset.clickToComponentTarget
+        }
+        
         return
       }
 
