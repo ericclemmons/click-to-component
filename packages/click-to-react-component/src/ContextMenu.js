@@ -180,6 +180,10 @@ export const ContextMenu = React.forwardRef(
 
     return html`
       <style key="click-to-component-contextmenu-style">
+        #floating-ui-root > div {
+          z-index: 2147483647;
+        }
+
         [data-click-to-component-contextmenu],
         [data-click-to-component-contextmenu] * {
           box-sizing: border-box !important;

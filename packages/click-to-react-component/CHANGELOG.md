@@ -1,5 +1,11 @@
 # click-to-react-component
 
+## 1.0.8
+
+### Patch Changes
+
+- 7661be0: Set floating-ui to max z-index
+
 ## 1.0.7
 
 ### Patch Changes
