@@ -11,7 +11,5 @@ export type Coords = [MouseEvent['pageX'], MouseEvent['pageY']]
 export type Target = HTMLElement
 
 export type ContextMenuProps = {
-  IDE: string
-  onChangeIDE: () => void
   onClose?: () => void
 }
