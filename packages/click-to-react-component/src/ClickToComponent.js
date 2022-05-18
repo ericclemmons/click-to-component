@@ -8,7 +8,7 @@ import { html } from 'htm/react'
 import * as React from 'react'
 
 import { ContextMenu } from './ContextMenu.js'
-import { getPathToSource } from './getPathToSource.js'
+import { getPathToSource as defaultGetPathToSource } from './getPathToSource.js'
 import { getSourceForElement } from './getSourceForElement.js'
 
 export const State = /** @type {const} */ ({
@@ -20,7 +20,7 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor = 'vscode' }) {
+export function ClickToComponent({ editor = 'vscode', getPathToSource = defaultGetPathToSource }) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
@@ -49,7 +49,7 @@ export function ClickToComponent({ editor = 'vscode' }) {
         setState(State.IDLE)
       }
     },
-    [editor, state, target]
+    [editor, state, target, getPathToSource]
   )
 
   const onClose = React.useCallback(
@@ -210,6 +210,7 @@ export function ClickToComponent({ editor = 'vscode' }) {
     <${FloatingPortal} key="click-to-component-portal">
       ${html`<${ContextMenu}
         key="click-to-component-contextmenu"
+        getPathToSource=${getPathToSource}
         onClose=${onClose}
       />`}
     </${FloatingPortal}

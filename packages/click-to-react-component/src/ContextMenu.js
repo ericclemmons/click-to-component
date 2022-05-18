@@ -24,7 +24,6 @@ import * as React from 'react'
 import mergeRefs from 'react-merge-refs'
 
 import { getDisplayNameForInstance } from './getDisplayNameFromReactInstance.js'
-import { getPathToSource } from './getPathToSource.js'
 import { getPropsForInstance } from './getPropsForInstance.js'
 import { getReactInstancesForElement } from './getReactInstancesForElement.js'
 import { getSourceForInstance } from './getSourceForInstance.js'
@@ -35,7 +34,7 @@ export const ContextMenu = React.forwardRef(
     props,
     ref
   ) => {
-    const { onClose } = props
+    const { getPathToSource, onClose } = props
 
     const [target, setTarget] = React.useState(
       /** @type {HTMLElement | null} */
