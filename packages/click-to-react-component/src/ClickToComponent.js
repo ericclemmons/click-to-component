@@ -200,10 +200,8 @@ export function ClickToComponent({ editor = 'vscode' }) {
         cursor: var(--click-to-component-cursor, context-menu) !important;
         outline: var(
           --click-to-component-outline,
-          2px solid lightgreen
+          -webkit-focus-ring-color auto 1px
         ) !important;
-        outline-offset: -2px;
-        outline-style: inset;
       }
     </style>
 
