@@ -198,6 +198,7 @@ export function ClickToComponent({ editor = 'vscode' }) {
 
       [data-click-to-component-target] {
         cursor: var(--click-to-component-cursor, context-menu) !important;
+        outline: auto 1px;
         outline: var(
           --click-to-component-outline,
           -webkit-focus-ring-color auto 1px
