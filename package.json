@@ -10,9 +10,9 @@
     "release": "changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.22.0",
+    "@changesets/cli": "^2.23.0",
     "eslint": "8.13.0",
-    "turbo": "^1.2.5"
+    "turbo": "^1.2.16"
   },
   "packageManager": "pnpm@6.32.3"
 }
