@@ -6,7 +6,7 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <ClickToComponent editor="vscode-insiders" />
+      <ClickToComponent editor={process.env.NEXT_PUBLIC_CTC_EDITOR} />
       <Component {...pageProps} />
     </>
   )
