@@ -1,5 +1,11 @@
 # click-to-react-component
 
+## 1.0.9
+
+### Patch Changes
+
+- 3c81f0b: Fixes `data-click-to-component` attribute staying on body indefinitely
+
 ## 1.0.8
 
 ### Patch Changes
