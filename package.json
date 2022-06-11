@@ -2,9 +2,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "turbo run build --filter=click-to-*-component",
+    "build": "turbo run build --filter=./packages/*",
     "env": "env",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run dev --filter=./packages/*",
     "lint": "turbo run lint",
     "prerelease": "turbo run build",
     "release": "changeset publish"
