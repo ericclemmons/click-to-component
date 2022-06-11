@@ -1,4 +1,4 @@
-export { ClickToComponent } from './src/ClickToComponent'
+export { ClickToComponent } from './ClickToComponent'
 
 export type Editor = 'vscode' | 'vscode-insiders'
 
