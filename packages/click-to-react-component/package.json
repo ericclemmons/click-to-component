@@ -44,5 +44,6 @@
     "@types/react-reconciler": "^0.26.6",
     "eslint": "^8.0.0",
     "eslint-config-react-app": "^7.0.1"
-  }
+  },
+  "sideEffects": false
 }
