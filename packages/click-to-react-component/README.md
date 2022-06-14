@@ -138,6 +138,13 @@ If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/
 +<ClickToComponent editor="vscode-insiders" />
 ```
 
+If, you use [`intellij`], you can set `editor` explicitly:
+
+```diff
+-<ClickToComponent />
++<ClickToComponent editor="intellij" />
+```
+
 ## Run Locally
 
 Clone the project
