@@ -44,7 +44,7 @@ export function ClickToComponent({ editor = 'vscode' }) {
         const url = `${editor}://file/${path}`
 
         event.preventDefault()
-        window.open(url)
+        window.location.assign(url)
 
         setState(State.IDLE)
       }
@@ -56,7 +56,7 @@ export function ClickToComponent({ editor = 'vscode' }) {
     function handleClose(returnValue) {
       if (returnValue) {
         const url = `${editor}://file/${returnValue}`
-        window.open(url)
+        window.location.assign(url)
       }
 
       setState(State.IDLE)
