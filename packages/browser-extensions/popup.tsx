@@ -1,21 +1,28 @@
-import { useState } from "react"
+import { useEffect, useRef } from "react"
 
-function IndexPopup() {
-  const [data, setData] = useState("")
+import { useToggled } from "~useToggled"
+
+export default function Popup() {
+  const [toggled, toggle] = useToggled()
+
+  useEffect(() => {
+    // There's a race-condition with Plasmo that will revert to the previous state if set too soon
+    setTimeout(() => {
+      toggle()
+      window.close()
+    }, 300)
+  }, [])
 
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: 16
+        padding: 16,
+        whiteSpace: "nowrap"
       }}>
-      <h1>
-        Welcome to your <a href="https://www.plasmo.com">Plasmo</a> Extension!
-      </h1>
-      <input onChange={(e) => setData(e.target.value)} value={data} />
+      👇 Hover & click any of the highlighted React components on your page
+      <button onClick={toggle}>{String(toggled)}</button>
     </div>
   )
 }
-
-export default IndexPopup
