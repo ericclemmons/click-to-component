@@ -1,6 +1,6 @@
 export { ClickToComponent } from './ClickToComponent'
 
-export type Editor = 'vscode' | 'vscode-insiders'
+export type Editor = 'vscode' | 'vscode-insiders' | string
 
 export type ClickToComponentProps = {
   editor?: Editor
