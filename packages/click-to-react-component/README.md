@@ -127,6 +127,45 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 </details>
 
+<details>
+<summary>Docusaurus</summary>
+
+    npm install @babel/plugin-transform-react-jsx-source
+
+babel.config.js:
+
+```js
+module.exports = {
+  presets: [require.resolve('@docusaurus/core/lib/babel/preset')],
+  plugins: [
+    ...(process.env.BABEL_ENV === 'development'
+      ? ['@babel/plugin-transform-react-jsx-source']
+      : []),
+  ],
+};
+```
+
+src/theme/Root.js:
+
+```js
+import { ClickToComponent } from 'click-to-react-component';
+import React from 'react';
+
+// Default implementation, that you can customize
+export default function Root({ children }) {
+  return (
+    <>
+      <ClickToComponent />
+      {children}
+    </>
+  );
+}
+```
+
+</details>
+
+If [developing in container](https://github.com/ericclemmons/click-to-component/issues/58)?
+
 ### `editor`
 
 By default, clicking will default `editor` to [`vscode`](https://code.visualstudio.com/).
