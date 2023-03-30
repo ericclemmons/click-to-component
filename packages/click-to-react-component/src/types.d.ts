@@ -3,7 +3,8 @@ export { ClickToComponent } from './ClickToComponent'
 export type Editor = 'vscode' | 'vscode-insiders'
 
 export type ClickToComponentProps = {
-  editor?: Editor
+  editor?: Editor,
+  pathModifier?: Function
 }
 
 export type Coords = [MouseEvent['pageX'], MouseEvent['pageY']]
