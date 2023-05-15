@@ -147,6 +147,19 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     [state]
   )
 
+  const onBlur = React.useCallback(
+    function handleBlur() {
+      switch (state) {
+        case State.HOVER:
+          setState(State.IDLE)
+          break
+
+        default:
+      }
+    },
+    [state]
+  )
+
   React.useEffect(
     function toggleIndicator() {
       for (const element of Array.from(
@@ -159,11 +172,9 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
 
       if (state === State.IDLE) {
         delete window.document.body.dataset.clickToComponent
-
         if (target) {
           delete target.dataset.clickToComponentTarget
         }
-
         return
       }
 
@@ -182,6 +193,7 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       window.addEventListener('keydown', onKeyDown)
       window.addEventListener('keyup', onKeyUp)
       window.addEventListener('mousemove', onMouseMove)
+      window.addEventListener('blur', onBlur)
 
       return function removeEventListenersFromWindow() {
         window.removeEventListener('click', onClick, { capture: true })
@@ -191,9 +203,10 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
         window.removeEventListener('keydown', onKeyDown)
         window.removeEventListener('keyup', onKeyUp)
         window.removeEventListener('mousemove', onMouseMove)
+        window.removeEventListener('blur', onBlur)
       }
     },
-    [onClick, onContextMenu, onKeyDown, onKeyUp, onMouseMove]
+    [onClick, onContextMenu, onKeyDown, onKeyUp, onMouseMove, onBlur]
   )
 
   return html`

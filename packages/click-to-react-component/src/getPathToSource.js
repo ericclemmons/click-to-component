@@ -12,7 +12,7 @@ export function getPathToSource(source) {
     columnNumber = 1,
     fileName,
     lineNumber = 1,
-  } = source;
+  } = source
 
-  return `${fileName}:${lineNumber}:${columnNumber}`;
+  return `${fileName}:${lineNumber}:${columnNumber}`
 }

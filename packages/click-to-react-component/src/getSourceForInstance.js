@@ -8,9 +8,9 @@
  */
 export function getSourceForInstance({ _debugSource, _debugOwner }) {
   // source is sometimes stored on _debugOwner
-  const source = _debugSource || (_debugOwner && _debugOwner._debugSource);
+  const source = _debugSource || (_debugOwner && _debugOwner._debugSource)
 
-  if (!source) return;
+  if (!source) return
 
   const {
     // It _does_ exist!
@@ -18,7 +18,7 @@ export function getSourceForInstance({ _debugSource, _debugOwner }) {
     columnNumber = 1,
     fileName,
     lineNumber = 1,
-  } = source;
+  } = source
 
-  return { columnNumber, fileName, lineNumber };
+  return { columnNumber, fileName, lineNumber }
 }
