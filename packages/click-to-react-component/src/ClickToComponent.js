@@ -20,7 +20,7 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor = 'vscode' }) {
+export function ClickToComponent({ editor = 'vscode', pathModifier }) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
@@ -41,7 +41,13 @@ export function ClickToComponent({ editor = 'vscode' }) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
         const path = getPathToSource(source)
-        const url = `${editor}://file/${path}`
+
+        let modifiedPath = path
+        if (pathModifier) {
+          modifiedPath = pathModifier(path)
+        }
+
+        const url = `${editor}://file/${modifiedPath}`
 
         event.preventDefault()
         window.location.assign(url)
@@ -141,19 +147,6 @@ export function ClickToComponent({ editor = 'vscode' }) {
     [state]
   )
 
-  const onBlur = React.useCallback(
-    function handleBlur() {
-      switch (state) {
-        case State.HOVER:
-          setState(State.IDLE)
-          break
-
-        default:
-      }
-    },
-    [state]
-  )
-
   React.useEffect(
     function toggleIndicator() {
       for (const element of Array.from(
@@ -166,11 +159,11 @@ export function ClickToComponent({ editor = 'vscode' }) {
 
       if (state === State.IDLE) {
         delete window.document.body.dataset.clickToComponent
-        
+
         if (target) {
           delete target.dataset.clickToComponentTarget
         }
-        
+
         return
       }
 
@@ -189,7 +182,6 @@ export function ClickToComponent({ editor = 'vscode' }) {
       window.addEventListener('keydown', onKeyDown)
       window.addEventListener('keyup', onKeyUp)
       window.addEventListener('mousemove', onMouseMove)
-      window.addEventListener('blur', onBlur)
 
       return function removeEventListenersFromWindow() {
         window.removeEventListener('click', onClick, { capture: true })
@@ -199,10 +191,9 @@ export function ClickToComponent({ editor = 'vscode' }) {
         window.removeEventListener('keydown', onKeyDown)
         window.removeEventListener('keyup', onKeyUp)
         window.removeEventListener('mousemove', onMouseMove)
-        window.removeEventListener('blur', onBlur)
       }
     },
-    [onClick, onContextMenu, onKeyDown, onKeyUp, onMouseMove, onBlur]
+    [onClick, onContextMenu, onKeyDown, onKeyUp, onMouseMove]
   )
 
   return html`

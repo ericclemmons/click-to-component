@@ -14,9 +14,5 @@ export function getPathToSource(source) {
     lineNumber = 1,
   } = source;
 
-  // some transpilers store fileName as a relative path in that case user should provide the project absolute path manually.
-  const projectRoot = window.__click_to_react_component_project_path || '';
-  const filePath = `${projectRoot.replace(/\/$/, '')}/${fileName}`;
-
-  return `${filePath}:${lineNumber}:${columnNumber}`;
+  return `${fileName}:${lineNumber}:${columnNumber}`;
 }
