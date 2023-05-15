@@ -12,7 +12,11 @@ export function getPathToSource(source) {
     columnNumber = 1,
     fileName,
     lineNumber = 1,
-  } = source
+  } = source;
 
-  return `${fileName}:${lineNumber}:${columnNumber}`
+  // some transpilers store fileName as a relative path in that case user should provide the project absolute path manually.
+  const projectRoot = window.__click_to_react_component_project_path || '';
+  const filePath = `${projectRoot.replace(/\/$/, '')}/${fileName}`;
+
+  return `${filePath}:${lineNumber}:${columnNumber}`;
 }
