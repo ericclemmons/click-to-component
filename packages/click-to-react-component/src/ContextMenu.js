@@ -35,7 +35,7 @@ export const ContextMenu = React.forwardRef(
     props,
     ref
   ) => {
-    const { onClose } = props
+    const { onClose, pathModifier } = props
 
     const [target, setTarget] = React.useState(
       /** @type {HTMLElement | null} */
@@ -327,7 +327,7 @@ export const ContextMenu = React.forwardRef(
                 ${instances.map((instance, i) => {
                   const name = getDisplayNameForInstance(instance)
                   const source = getSourceForInstance(instance)
-                  const path = getPathToSource(source)
+                  const path = getPathToSource(source, pathModifier)
                   const props = getPropsForInstance(instance)
 
                   return html`

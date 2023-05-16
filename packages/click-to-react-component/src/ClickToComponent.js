@@ -40,14 +40,9 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     ) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
-        const path = getPathToSource(source)
+        const path = getPathToSource(source, pathModifier)
 
-        let modifiedPath = path
-        if (pathModifier) {
-          modifiedPath = pathModifier(path)
-        }
-
-        const url = `${editor}://file/${modifiedPath}`
+        const url = `${editor}://file/${path}`
 
         event.preventDefault()
         window.location.assign(url)
@@ -229,6 +224,7 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       ${html`<${ContextMenu}
         key="click-to-component-contextmenu"
         onClose=${onClose}
+        pathModifier=${pathModifier}
       />`}
     </${FloatingPortal}
   `
