@@ -1,0 +1,23 @@
+{
+  "name": "Click-to-React-Component Extension",
+  "description": "Option+Click React components in your browser to instantly open the source in VS Code",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_title": "Hover & (right-)click any of the highlighted React components on your page"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": ["activeTab", "scripting", "storage", "<all_urls>"],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "node_modules/click-to-react-component/src/index.js",
+        "node_modules/click-to-react-component/src/ClickToComponent.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

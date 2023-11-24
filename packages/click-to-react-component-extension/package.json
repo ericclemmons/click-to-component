@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "click-to-react-component-extension",
+  "scripts": {
+    "dev": "web-ext run -t chromium"
+  },
+  "dependencies": {
+    "click-to-react-component": "workspace:^1.0.9"
+  },
+  "devDependencies": {
+    "web-ext": "^7.1.0"
+  }
+}
