@@ -146,16 +146,16 @@ Clone the project
 gh repo clone ericclemmons/click-to-component
 ```
 
-Go to the project directory
-
-```shell
-cd click-to-component
-```
-
 Install dependencies
 
 ```shell
 pnpm install
+```
+
+Go to the project directory
+
+```shell
+cd packages/click-to-react-component
 ```
 
 Run one of the examples:

@@ -2,12 +2,16 @@
   "private": true,
   "name": "click-to-react-component-extension",
   "scripts": {
-    "dev": "web-ext run -t chromium"
+    "dev": "parcel watch manifest.json --config @parcel/config-webextension",
+    "browser": "web-ext run -t chromium"
   },
   "dependencies": {
-    "click-to-react-component": "workspace:^1.0.9"
+    "click-to-react-component": "workspace:^1.0.9",
+    "react": "^18.2.0"
   },
   "devDependencies": {
+    "@parcel/config-webextension": "^2.6.2",
+    "parcel": "^2.6.2",
     "web-ext": "^7.1.0"
   }
 }
