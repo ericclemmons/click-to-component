@@ -43,7 +43,7 @@ importers:
         version: 2.1.4
     devDependencies:
       click-to-react-component:
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../../packages/click-to-react-component
 
   apps/next:
@@ -65,7 +65,7 @@ importers:
         specifier: 18.0.3
         version: 18.0.3
       click-to-react-component:
-        specifier: workspace:^1.0.10
+        specifier: workspace:^1.1.0
         version: link:../../packages/click-to-react-component
       eslint:
         specifier: 8.13.0
@@ -98,7 +98,7 @@ importers:
         specifier: ^2.4.3
         version: 2.4.3
       click-to-react-component:
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../../packages/click-to-react-component
       react:
         specifier: ^17.0.2
