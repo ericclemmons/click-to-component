@@ -10,6 +10,7 @@ import * as React from 'react'
 import { ContextMenu } from './ContextMenu.js'
 import { getPathToSource } from './getPathToSource.js'
 import { getSourceForElement } from './getSourceForElement.js'
+import { getUrl } from './getUrl.js'
 
 export const State = /** @type {const} */ ({
   IDLE: 'IDLE',
@@ -41,8 +42,10 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
         const path = getPathToSource(source, pathModifier)
-
-        const url = `${editor}://file/${path}`
+        const url = getUrl({
+          editor,
+          pathToSource: path,
+        })
 
         event.preventDefault()
         window.location.assign(url)
@@ -56,7 +59,11 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
   const onClose = React.useCallback(
     function handleClose(returnValue) {
       if (returnValue) {
-        const url = `${editor}://file/${returnValue}`
+        const url = getUrl({
+          editor,
+          pathToSource: returnValue,
+        })
+
         window.location.assign(url)
       }
 
