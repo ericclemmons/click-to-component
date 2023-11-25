@@ -1,5 +1,11 @@
 # click-to-react-component
 
+## 1.1.0
+
+### Minor Changes
+
+- 9246a89: Add remix/esbuild support by checking the \_debugOwner.\_debugSource
+
 ## 1.0.10
 
 ### Patch Changes
