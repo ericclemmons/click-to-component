@@ -21,7 +21,7 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor = 'vscode' }) {
+export function ClickToComponent({ editor = 'vscode', pathModifier }) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
@@ -41,7 +41,7 @@ export function ClickToComponent({ editor = 'vscode' }) {
     ) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
-        const path = getPathToSource(source)
+        const path = getPathToSource(source, pathModifier)
         const url = getUrl({
           editor,
           pathToSource: path,
@@ -174,11 +174,9 @@ export function ClickToComponent({ editor = 'vscode' }) {
 
       if (state === State.IDLE) {
         delete window.document.body.dataset.clickToComponent
-        
         if (target) {
           delete target.dataset.clickToComponentTarget
         }
-        
         return
       }
 
@@ -233,6 +231,7 @@ export function ClickToComponent({ editor = 'vscode' }) {
       ${html`<${ContextMenu}
         key="click-to-component-contextmenu"
         onClose=${onClose}
+        pathModifier=${pathModifier}
       />`}
     </${FloatingPortal}
   `

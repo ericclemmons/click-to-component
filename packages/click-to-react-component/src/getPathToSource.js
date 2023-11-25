@@ -1,11 +1,13 @@
 /**
  * @typedef {import('react-reconciler').Source} Source
+ * @typedef {import('./types').PathModifier} PathModifier
  */
 
 /**
  * @param {Source} source
+ * @param {PathModifier} pathModifier
  */
-export function getPathToSource(source) {
+export function getPathToSource(source, pathModifier) {
   const {
     // It _does_ exist!
     // @ts-ignore Property 'columnNumber' does not exist on type 'Source'.ts(2339)
@@ -14,5 +16,10 @@ export function getPathToSource(source) {
     lineNumber = 1,
   } = source
 
-  return `${fileName}:${lineNumber}:${columnNumber}`
+  let path = `${fileName}:${lineNumber}:${columnNumber}`
+  if (pathModifier) {
+    path = pathModifier(path)
+  }
+
+  return path
 }

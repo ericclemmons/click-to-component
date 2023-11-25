@@ -1,8 +1,6 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import { cssBundleHref } from "@remix-run/css-bundle";
+import type { LinksFunction, LoaderArgs } from "@remix-run/node";
+import { ClickToComponent } from "click-to-react-component";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -11,36 +9,32 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
-import { ClickToComponent } from "click-to-react-component";
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
+import { getUser } from "~/session.server";
+import stylesheet from "~/tailwind.css";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheet },
+  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+];
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix Notes",
-  viewport: "width=device-width,initial-scale=1",
-});
-
-type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
-  return json<LoaderData>({
-    user: await getUser(request),
+export const loader = async ({ request }: LoaderArgs) => {
+  return json({ 
+    user: await getUser(request),  
+    projectDir: process.env.NODE_ENV === 'production' ? undefined : process.cwd(),
   });
 };
 
 export default function App() {
+  const { projectDir } = useLoaderData();
+
   return (
     <html lang="en" className="h-full">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
@@ -49,7 +43,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <ClickToComponent editor="vscode-insiders" />
+        <ClickToComponent pathModifier={(path: string) => `${projectDir}/${path}`} />
       </body>
     </html>
   );
