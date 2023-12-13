@@ -16,9 +16,6 @@ export function getSourceForElement(
 
   if (source) return source
 
-  // console.warn("Couldn't find a React instance for the element", element)
-  // console.info("Let us try to find a React instance ancestor which has a source")
-
   const fallbackSource = getFirstParentElementWithSource(element)
   return fallbackSource
 }
