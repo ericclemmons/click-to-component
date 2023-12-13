@@ -22,7 +22,10 @@ export function getSourceForElement(
 
 function getFirstParentElementWithSource(element) {
   const parentElement = element.parentElement
-  if (parentElement === null) throw new Error('No parent found')
+  if (parentElement === null) {
+    console.warn("Couldn't find a React instance for the element", element)
+    throw new Error('No parent found for element')
+  }
 
   const instance = getReactInstanceForElement(parentElement)
   const source = getSourceForInstance(instance)
