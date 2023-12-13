@@ -5,7 +5,12 @@ import { getSourceForInstance } from './getSourceForInstance'
  * @typedef {import('react-reconciler').Fiber} Fiber
  */
 
-export function getSourceForElement(element) {
+export function getSourceForElement(
+  /**
+   * @type {HTMLElement}
+   */
+  element
+) {
   const instance = getReactInstanceForElement(element)
   const source = getSourceForInstance(instance)
 
