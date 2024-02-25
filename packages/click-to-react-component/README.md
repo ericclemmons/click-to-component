@@ -168,14 +168,28 @@ If [developing in container](https://github.com/ericclemmons/click-to-component/
 
 ### `editor`
 
-By default, clicking will default `editor` to [`vscode`](https://code.visualstudio.com/).
+By default, the `editor` is set to [`vscode`](https://code.visualstudio.com/).
 
-If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/), you can set `editor` explicitly:
-
+But you can choose between `webstorm` and `vscode-insider` too.
 ```diff
 -<ClickToComponent />
 +<ClickToComponent editor="vscode-insiders" />
 ```
+If you are using another editor, you can use the `getEditorUrl` prop to define your own editor.
+
+### `getEditorUrl`
+
+If you want to define your own editor, you can use the `getEditorUrl` prop to define your own editor.
+This function will be called with the `path`, `line`, and `column` of the target file.
+
+```tsx
+    <ClickToComponent
+        getEditorUrl={(path, line, column) => {
+           return `my-editor://open?file=${path}&line=${line}&column=${column}`
+        }}
+    />
+```
+
 
 ## Run Locally
 

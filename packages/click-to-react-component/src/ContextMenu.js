@@ -327,7 +327,7 @@ export const ContextMenu = React.forwardRef(
                 ${instances.map((instance, i) => {
                   const name = getDisplayNameForInstance(instance)
                   const source = getSourceForInstance(instance)
-                  const path = getPathToSource(source, pathModifier)
+                  const {line , column , path} = getPathToSource(source, pathModifier)
                   const props = getPropsForInstance(instance)
 
                   return html`
@@ -344,7 +344,7 @@ export const ContextMenu = React.forwardRef(
                       key=${i}
                       name="path"
                       type="submit"
-                      value=${path}
+                      value=${path}:${line}:${column}
                     >
                       <code>
                         ${'<'}${name}
