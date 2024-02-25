@@ -11,9 +11,10 @@ const editorsPreset = {
  * @param {number} param.line
  * @param {number} param.column
  * @param {string=} param.pathToSource
+ * @param {Function=} param.getEditorUrl
  */
-export function getUrl({ editor, path ,line ,column,pathToSource }) {
-  const urlFactory = editorsPreset[editor] || editorsPreset["vscode"]
+export function getUrl({ editor, path ,line ,column,pathToSource,getEditorUrl }) {
+  const urlFactory = getEditorUrl ? getEditorUrl : (editorsPreset[editor] || editorsPreset["vscode"])
   // support for the old method pathToSource
   if (pathToSource){
     const params = pathToSource.split(":")

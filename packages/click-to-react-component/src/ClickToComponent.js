@@ -21,7 +21,7 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor = 'vscode', pathModifier }) {
+export function ClickToComponent({ editor = 'vscode', pathModifier ,getEditorUrl  }) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
@@ -46,7 +46,8 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
           editor,
           path ,
           column ,
-          line
+          line,
+          getEditorUrl
         })
 
         event.preventDefault()
@@ -63,6 +64,7 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       if (returnValue) {
         const url = getUrl({
           editor,
+          getEditorUrl,
           pathToSource: returnValue,
         })
 
