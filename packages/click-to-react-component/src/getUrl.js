@@ -8,9 +8,9 @@ const editorsPreset = {
  * @param {Object} param
  * @param {string} param.editor
  * @param {string} param.path
- * @param {string} param.line
- * @param {string} param.column
- * @param {string} param.pathToSource
+ * @param {number} param.line
+ * @param {number} param.column
+ * @param {string=} param.pathToSource
  */
 export function getUrl({ editor, path ,line ,column,pathToSource }) {
   const urlFactory = editorsPreset[editor] || editorsPreset["vscode"]
