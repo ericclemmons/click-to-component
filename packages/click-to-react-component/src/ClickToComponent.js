@@ -41,10 +41,12 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     ) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
-        const path = getPathToSource(source, pathModifier)
+        const { path , column ,  line} = getPathToSource(source, pathModifier)
         const url = getUrl({
           editor,
-          pathToSource: path,
+          path ,
+          column ,
+          line
         })
 
         event.preventDefault()
