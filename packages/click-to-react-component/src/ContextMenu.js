@@ -233,6 +233,7 @@ export const ContextMenu = React.forwardRef(
           padding: 5px;
           border-radius: 4px;
           font-size: 13px;
+          max-width: 50vw;
         }
 
         [data-click-to-component-contextmenu] button:focus,
