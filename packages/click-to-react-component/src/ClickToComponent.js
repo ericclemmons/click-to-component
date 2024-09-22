@@ -220,10 +220,24 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       [data-click-to-component-target] {
         cursor: var(--click-to-component-cursor, context-menu) !important;
         outline: auto 1px;
-        outline: var(
-          --click-to-component-outline,
-          -webkit-focus-ring-color auto 1px
-        ) !important;
+      }
+
+      @supports (outline-color: Highlight) {
+        [data-click-to-component-target] {
+          outline: var(
+            --click-to-component-outline,
+            Highlight auto 1px
+          ) !important;
+        }
+      }
+
+      @supports (outline-color: -webkit-focus-ring-color) {
+        [data-click-to-component-target] {
+          outline: var(
+            --click-to-component-outline,
+            -webkit-focus-ring-color auto 1px
+          ) !important;
+        }
       }
     </style>
 
