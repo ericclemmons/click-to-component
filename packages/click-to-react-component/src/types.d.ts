@@ -1,6 +1,6 @@
-export { ClickToComponent } from './ClickToComponent'
+export { ClickToComponent } from './ClickToComponent';
 
-export type Editor = 'vscode' | 'vscode-insiders'
+export type Editor = 'vscode' | 'vscode-insiders' | 'cursor';
 
 export type PathModifier = (path: string) => string;
 
