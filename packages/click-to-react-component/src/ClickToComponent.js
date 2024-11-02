@@ -9,7 +9,8 @@ import * as React from 'react'
 
 import { ContextMenu } from './ContextMenu.js'
 import { getPathToSource } from './getPathToSource.js'
-import { getSourceForElement } from './getSourceForElement.js'
+import { getReactInstancesForElement } from './getReactInstancesForElement.js'
+import { getSourceForInstance } from './getSourceForInstance.js'
 import { getUrl } from './getUrl.js'
 
 export const State = /** @type {const} */ ({
@@ -40,7 +41,25 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       event
     ) {
       if (state === State.HOVER && target instanceof HTMLElement) {
-        const source = getSourceForElement(target)
+        const instance = getReactInstancesForElement(target).find((instance) =>
+          getSourceForInstance(instance)
+        )
+
+        if (!instance) {
+          return console.warn(
+            'Could not find React instance for element',
+            target
+          )
+        }
+
+        const source = getSourceForInstance(instance)
+
+        if (!source) {
+          return console.warn(
+            'Could not find source for React instance',
+            instance
+          )
+        }
         const path = getPathToSource(source, pathModifier)
         const url = getUrl({
           editor,
@@ -53,7 +72,7 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
         setState(State.IDLE)
       }
     },
-    [editor, state, target]
+    [editor, pathModifier, state, target]
   )
 
   const onClose = React.useCallback(
