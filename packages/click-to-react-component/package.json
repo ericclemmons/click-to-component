@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "click-to-react-component",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Option+Click your React components in your browser to open the source file in VS Code",
   "exports": {
     "import": "./src/index.js",
