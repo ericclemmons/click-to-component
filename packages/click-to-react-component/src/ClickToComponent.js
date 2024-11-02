@@ -21,7 +21,7 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor = 'vscode', pathModifier }) {
+export function ClickToComponent({ editor = 'vscode', pathModifier ,getEditorUrl  }) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
     (State.IDLE)
@@ -41,10 +41,13 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     ) {
       if (state === State.HOVER && target instanceof HTMLElement) {
         const source = getSourceForElement(target)
-        const path = getPathToSource(source, pathModifier)
+        const { path , column ,  line} = getPathToSource(source, pathModifier)
         const url = getUrl({
           editor,
-          pathToSource: path,
+          path ,
+          column ,
+          line,
+          getEditorUrl
         })
 
         event.preventDefault()
@@ -61,6 +64,7 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       if (returnValue) {
         const url = getUrl({
           editor,
+          getEditorUrl,
           pathToSource: returnValue,
         })
 
