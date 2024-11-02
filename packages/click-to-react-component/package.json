@@ -43,8 +43,9 @@
     "react-merge-refs": "^1.1.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.6",
-    "@types/react-reconciler": "^0.26.6",
+    "@types/node": "^22.8.6",
+    "@types/react": "^18.3.12",
+    "@types/react-reconciler": "^0.28.8",
     "eslint": "^8.0.0",
     "eslint-config-react-app": "^7.0.1"
   },
