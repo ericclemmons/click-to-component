@@ -30,11 +30,16 @@ export function getDisplayNameForInstance(instance) {
     case 11: // ForwardRef
       return 'React.forwardRef'
 
-    case 15: // MemoComponent
+    case 14: // MemoComponent
+    case 15: // MemoComponent or LazyComponent in react>16
       // Attempt to get name from wrapped component
-      return elementType.type.name || 'React.memo'
+      return (
+        elementType.type?.name ||
+        Symbol.keyFor?.(elementType.$$typeof) ||
+        'React.memo'
+      )
 
-    case 16: // LazyComponent
+    case 16: // LazyComponent in react 16
       return 'React.lazy'
 
     default:

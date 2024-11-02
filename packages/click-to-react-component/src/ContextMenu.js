@@ -233,6 +233,7 @@ export const ContextMenu = React.forwardRef(
           padding: 5px;
           border-radius: 4px;
           font-size: 13px;
+          max-width: 50vw;
         }
 
         [data-click-to-component-contextmenu] button:focus,
@@ -351,7 +352,9 @@ export const ContextMenu = React.forwardRef(
                         ${Object.entries(props).map(
                           ([prop, value]) => html`
                             ${' '}
-                            <var key=${prop} title="${value}">${prop}</var>
+                            <var key=${prop} title="${String(value)}"
+                              >${prop}</var
+                            >
                           `
                         )}
                         ${'>'}
