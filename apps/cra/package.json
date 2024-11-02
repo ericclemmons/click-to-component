@@ -36,6 +36,6 @@
     ]
   },
   "devDependencies": {
-    "click-to-react-component": "workspace:^1.1.0"
+    "click-to-react-component": "workspace:^1.1.1"
   }
 }

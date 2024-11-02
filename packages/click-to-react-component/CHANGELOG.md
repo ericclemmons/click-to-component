@@ -1,5 +1,11 @@
 # click-to-react-component
 
+## 1.1.1
+
+### Patch Changes
+
+- 06bff87: Fix TypeScript error "Could not find a declaration file for module"
+
 ## 1.1.0
 
 ### Minor Changes

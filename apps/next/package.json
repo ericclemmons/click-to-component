@@ -15,7 +15,7 @@
   "devDependencies": {
     "@types/node": "17.0.23",
     "@types/react": "18.0.3",
-    "click-to-react-component": "workspace:^1.1.0",
+    "click-to-react-component": "workspace:^1.1.1",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "typescript": "4.6.3"
