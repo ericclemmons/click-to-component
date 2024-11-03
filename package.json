@@ -5,7 +5,7 @@
     "build": "turbo run build --filter=click-to-*-component",
     "env": "env",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
+    "lint": "turbo run lint --filter=click-to-*-component",
     "prerelease": "turbo run build",
     "release": "changeset publish"
   },
