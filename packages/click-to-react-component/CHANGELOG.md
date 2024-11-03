@@ -1,5 +1,13 @@
 # click-to-react-component
 
+## 1.1.2
+
+### Patch Changes
+
+- 32bd930: feat: Fix lots of bugs with getting source
+
+  This works with newer versions of React, too. But, importantly, the algorithm to get the `source` is way more accurate.
+
 ## 1.1.1
 
 ### Patch Changes
