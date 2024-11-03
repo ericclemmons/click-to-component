@@ -6,7 +6,7 @@
     "env": "env",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint --filter=click-to-*-component",
-    "prerelease": "turbo run build",
+    "prerelease": "pnpm run build",
     "release": "changeset publish"
   },
   "devDependencies": {
