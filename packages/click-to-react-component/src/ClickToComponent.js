@@ -61,14 +61,17 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
           )
         }
         const path = getPathToSource(source, pathModifier)
-        const url = getUrl({
+        const [url, isURLScheme] = getUrl({
           editor,
           pathToSource: path,
         })
 
         event.preventDefault()
-        window.location.assign(url)
-
+        if (isURLScheme) {
+          window.location.assign(url)
+        } else {
+          fetch(url);
+        }
         setState(State.IDLE)
       }
     },
@@ -78,12 +81,16 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
   const onClose = React.useCallback(
     function handleClose(returnValue) {
       if (returnValue) {
-        const url = getUrl({
+        const [url,isURLScheme] = getUrl({
           editor,
           pathToSource: returnValue,
         })
 
-        window.location.assign(url)
+        if (isURLScheme) {
+          window.location.assign(url)
+        } else {
+          fetch(url);
+        }
       }
 
       setState(State.IDLE)
@@ -247,11 +254,12 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     </style>
 
     <${FloatingPortal} key="click-to-component-portal">
-      ${html`<${ContextMenu}
-        key="click-to-component-contextmenu"
-        onClose=${onClose}
-        pathModifier=${pathModifier}
-      />`}
+      ${html`
+        <${ContextMenu}
+          key="click-to-component-contextmenu"
+          onClose=${onClose}
+          pathModifier=${pathModifier}
+        />`}
     </${FloatingPortal}
   `
 }

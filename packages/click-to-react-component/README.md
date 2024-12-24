@@ -18,7 +18,7 @@
   [Create React App](https://create-react-app.dev/),
   & [Vite](https://github.com/vitejs/vite/tree/main/packages/plugin-react)
   that use [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
-- Supports `vscode` & `vscode-insiders` & `cursor` [URL handling](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls)
+- Supports `vscode`, `vscode-insiders`, `cursor` [URL handling](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls), and JB IDEs like `WebStorm` (requires [IDE Remote Control](https://plugins.jetbrains.com/plugin/19991-ide-remote-control))
 - Automatically **tree-shaken** from `production` builds
 - Keyboard navigation in context menu (e.g. <kbd>←</kbd>, <kbd>→</kbd>, <kbd>⏎</kbd>)
 - More context & faster than using React DevTools:
