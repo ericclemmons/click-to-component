@@ -1,6 +1,9 @@
 export { ClickToComponent } from './ClickToComponent'
 
-export type Editor = 'vscode' | 'vscode-insiders' | 'cursor' | string
+const JB_EDITORS = ['idea', 'appcode', 'clion', 'pycharm', 'phpstorm',
+  'rubymine', 'webstorm', 'rider', 'goland', 'rustrover'] as const
+
+export type Editor = 'vscode' | 'vscode-insiders' | 'cursor' | typeof JB_EDITORS[number] | string
 
 export type PathModifier = (path: string) => string
 
