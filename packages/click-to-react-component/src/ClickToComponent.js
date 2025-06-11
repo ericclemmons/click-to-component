@@ -19,6 +19,8 @@ export const State = /** @type {const} */ ({
   SELECT: 'SELECT',
 })
 
+const isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*\:/i
+
 /**
  * @param {Props} props
  */
@@ -67,6 +69,10 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
         })
 
         event.preventDefault()
+        if (isJavaScriptProtocol.test(url)) {
+          console.warn(`ClickToComponent has blocked a javascript: URL as a security precaution`);
+          return;
+        }
         window.location.assign(url)
 
         setState(State.IDLE)
@@ -82,7 +88,10 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
           editor,
           pathToSource: returnValue,
         })
-
+        if (isJavaScriptProtocol.test(url)) {
+          console.warn(`ClickToComponent has blocked a javascript: URL as a security precaution`);
+          return;
+        }
         window.location.assign(url)
       }
 
