@@ -1,8 +1,10 @@
-export { ClickToComponent } from './ClickToComponent'
+import * as React from 'react'
 
-export type Editor = 'vscode' | 'vscode-insiders' | 'cursor' | string
+export type Editor = 'vscode' | 'vscode-insiders' | 'cursor' | (string & {})
 
 export type PathModifier = (path: string) => string
+
+declare function ClickToComponent(props: ClickToComponentProps): React.ReactElement
 
 export type ClickToComponentProps = {
   editor?: Editor
