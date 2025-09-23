@@ -1,5 +1,12 @@
 # click-to-react-component
 
+## 1.1.3
+
+### Patch Changes
+
+- ba28045: Improve exports to support import fallback
+- 4068e55: feat: update type definition for ClickToComponent
+
 ## 1.1.2
 
 ### Patch Changes
