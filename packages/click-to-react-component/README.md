@@ -21,6 +21,8 @@
 - Supports `vscode` & `vscode-insiders` & `cursor` [URL handling](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls)
 - Automatically **tree-shaken** from `production` builds
 - Keyboard navigation in context menu (e.g. <kbd>←</kbd>, <kbd>→</kbd>, <kbd>⏎</kbd>)
+- Inspect a development page through a [DevTools Snippet](#browser-snippet), with
+  automatic selection and a movable panel for status, pause/resume and cleanup.
 - More context & faster than using React DevTools:
 
   > ![React DevTools](devtools.png)
@@ -176,6 +178,106 @@ If, like me, you use [`vscode-insiders`](https://code.visualstudio.com/insiders/
 -<ClickToComponent />
 +<ClickToComponent editor="vscode-insiders" />
 ```
+
+## Browser Snippet
+
+Load the inspector into an existing React development page without adding a
+dependency to that application or editing its source.
+
+### Build and load
+
+From this repository's root, using Node.js 18 or later:
+
+```shell
+pnpm install
+pnpm --filter click-to-react-component build:browser
+```
+
+The command generates `packages/click-to-react-component/dist/click-to-component.js`.
+The bundle includes its own React 18 renderer and does not replace the target
+application's React instance. The React and ReactDOM development dependencies
+support this build; they do not upgrade the target application.
+
+1. Open the target development page and its browser DevTools.
+2. In **Sources > Snippets**, create a new Snippet.
+3. Copy the **entire generated file** into it and run it with **Ctrl+Enter**
+   (**Command+Enter** on macOS).
+4. Look for the **Source inspector** panel and its **Inspector loaded** message.
+
+The inspector starts in selection mode. Saving or pasting a Snippet alone does
+not execute it. Run the Snippet in the execution context of the page you want to
+inspect; for iframe content, choose that frame's context.
+
+### Select and control
+
+- Move over a page element to highlight it, then click to open its source.
+- Right-click an element to choose from its React component owners.
+- Use **Pause selection** to restore normal page interaction and **Resume
+  selection** to start inspecting again.
+- Drag the panel's title to move it. Its position stays within the viewport,
+  including after resizing the browser window.
+- Use **Close** to remove the panel, component menu, highlight markers and tool
+  event listeners.
+
+The panel uses Shadow DOM to isolate its styles. Its controls and component
+menu are excluded from selection. The regular embedded component continues to
+use Alt/Option by default; the Snippet enables selection automatically.
+
+Running the Snippet again replaces the previous inspector. Refreshing the page
+removes it. After changing the inspector source, rebuild and replace the saved
+Snippet's contents before running it again; saved Snippets do not update
+automatically. The generated `dist` directory is ignored by Git.
+
+### Configure the editor and paths
+
+Set options in the page's Console before running the Snippet:
+
+```js
+window.__CTC_OPTIONS__ = {
+  editor: 'cursor',
+  pathModifier: (path) =>
+    path.replace('/workspace/project/', 'D:/my-project/'),
+}
+```
+
+`editor` defaults to `vscode`. The modifier receives the complete path, including
+its trailing `:line:column`; preserve that location in the returned value. Rerun
+the Snippet after changing options.
+
+To remove the inspector from the Console:
+
+```js
+window.__CTC__?.unmount()
+```
+
+### Requirements and troubleshooting
+
+Source navigation requires React development source metadata (`_debugSource`)
+and an editor URL handler installed on the local machine. This change does not
+add React 19 debug-stack or source-map resolution. The standalone bundle retains
+development code, but it cannot restore source metadata missing from a target
+page or production build.
+
+If the panel is missing, check that the Snippet ran successfully in the correct
+frame and inspect the Console for errors. `Boolean(window.__CTC__)` indicates
+whether the inspector control object is available. If highlighting works but a
+source cannot be opened, read the panel's status message and check the page's
+source metadata, local paths and editor URL handler.
+
+Avoid loading the Snippet alongside an embedded `<ClickToComponent />` in the
+same page, since both integrations would register selection handlers. The
+repository's existing example applications already embed the component.
+
+### Component integration options
+
+The browser entry reuses the existing component with these additional optional
+props, also available to applications embedding it directly:
+
+| Prop | Default | Purpose |
+| --- | --- | --- |
+| `active` | `false` | Keep selection enabled without holding Alt/Option. |
+| `onStatus` | — | Receive source-navigation and missing-metadata messages. |
+| `portalId` | Floating UI's default | Place the component menu in a dedicated container. |
 
 ## Run Locally
 

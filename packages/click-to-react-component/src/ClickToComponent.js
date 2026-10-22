@@ -22,10 +22,16 @@ export const State = /** @type {const} */ ({
 /**
  * @param {Props} props
  */
-export function ClickToComponent({ editor = 'vscode', pathModifier }) {
+export function ClickToComponent({
+  editor = 'vscode',
+  pathModifier,
+  active = false,
+  portalId,
+  onStatus,
+}) {
   const [state, setState] = React.useState(
     /** @type {State[keyof State]} */
-    (State.IDLE)
+    (active ? State.HOVER : State.IDLE)
   )
 
   const [target, setTarget] = React.useState(
@@ -40,21 +46,34 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
        */
       event
     ) {
-      if (state === State.HOVER && target instanceof HTMLElement) {
-        const instance = getReactInstancesForElement(target).find((instance) =>
-          getSourceForInstance(instance)
+      if (
+        !(event.target instanceof HTMLElement) ||
+        event.target.closest('[data-click-to-component-ignore]')
+      ) {
+        return
+      }
+
+      if (state === State.HOVER || active || event.altKey) {
+        event.preventDefault()
+        event.stopPropagation()
+        const instance = getReactInstancesForElement(event.target).find(
+          (instance) => getSourceForInstance(instance)
         )
 
         if (!instance) {
+          onStatus?.(
+            'No source information found. Use a React development build with source metadata.'
+          )
           return console.warn(
             'Could not find React instance for element',
-            target
+            event.target
           )
         }
 
         const source = getSourceForInstance(instance)
 
         if (!source) {
+          onStatus?.('Source information is unavailable for this component.')
           return console.warn(
             'Could not find source for React instance',
             instance
@@ -66,13 +85,13 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
           pathToSource: path,
         })
 
-        event.preventDefault()
+        onStatus?.(`Opening source: ${path}`)
         window.location.assign(url)
 
-        setState(State.IDLE)
+        setState(active ? State.HOVER : State.IDLE)
       }
     },
-    [editor, pathModifier, state, target]
+    [active, editor, onStatus, pathModifier, state]
   )
 
   const onClose = React.useCallback(
@@ -83,12 +102,13 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
           pathToSource: returnValue,
         })
 
+        onStatus?.(`Opening source: ${returnValue}`)
         window.location.assign(url)
       }
 
-      setState(State.IDLE)
+      setState(active ? State.HOVER : State.IDLE)
     },
-    [editor]
+    [active, editor, onStatus]
   )
 
   const onContextMenu = React.useCallback(
@@ -100,14 +120,18 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     ) {
       const { target } = event
 
-      if (state === State.HOVER && target instanceof HTMLElement) {
+      if (
+        target instanceof HTMLElement &&
+        !target.closest('[data-click-to-component-ignore]') &&
+        (state === State.HOVER || active || event.altKey)
+      ) {
         event.preventDefault()
 
         setState(State.SELECT)
         setTarget(target)
       }
     },
-    [state]
+    [active, state]
   )
 
   const onKeyDown = React.useCallback(
@@ -137,13 +161,13 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     ) {
       switch (state) {
         case State.HOVER:
-          setState(State.IDLE)
+          if (!active && !event.altKey) setState(State.IDLE)
           break
 
         default:
       }
     },
-    [state]
+    [active, state]
   )
 
   const onMouseMove = React.useCallback(
@@ -154,32 +178,39 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       if (!(event.target instanceof HTMLElement)) {
         return
       }
+      if (event.target.closest('[data-click-to-component-ignore]')) return
 
       switch (state) {
         case State.IDLE:
         case State.HOVER:
           setTarget(event.target)
+          if (active || event.altKey) setState(State.HOVER)
+          else if (state === State.HOVER) setState(State.IDLE)
           break
 
         default:
           break
       }
     },
-    [state]
+    [active, state]
   )
 
   const onBlur = React.useCallback(
     function handleBlur() {
       switch (state) {
         case State.HOVER:
-          setState(State.IDLE)
+          if (!active) setState(State.IDLE)
           break
 
         default:
       }
     },
-    [state]
+    [active, state]
   )
+
+  React.useEffect(() => {
+    setState(active ? State.HOVER : State.IDLE)
+  }, [active])
 
   React.useEffect(
     function toggleIndicator() {
@@ -211,9 +242,9 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
     function addEventListenersToWindow() {
       window.addEventListener('click', onClick, { capture: true })
       window.addEventListener('contextmenu', onContextMenu, { capture: true })
-      window.addEventListener('keydown', onKeyDown)
-      window.addEventListener('keyup', onKeyUp)
-      window.addEventListener('mousemove', onMouseMove)
+      window.addEventListener('keydown', onKeyDown, { capture: true })
+      window.addEventListener('keyup', onKeyUp, { capture: true })
+      window.addEventListener('mousemove', onMouseMove, { capture: true })
       window.addEventListener('blur', onBlur)
 
       return function removeEventListenersFromWindow() {
@@ -221,9 +252,9 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
         window.removeEventListener('contextmenu', onContextMenu, {
           capture: true,
         })
-        window.removeEventListener('keydown', onKeyDown)
-        window.removeEventListener('keyup', onKeyUp)
-        window.removeEventListener('mousemove', onMouseMove)
+        window.removeEventListener('keydown', onKeyDown, { capture: true })
+        window.removeEventListener('keyup', onKeyUp, { capture: true })
+        window.removeEventListener('mousemove', onMouseMove, { capture: true })
         window.removeEventListener('blur', onBlur)
       }
     },
@@ -232,10 +263,6 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
 
   return html`
     <style key="click-to-component-style">
-      [data-click-to-component] * {
-        pointer-events: auto !important;
-      }
-
       [data-click-to-component-target] {
         cursor: var(--click-to-component-cursor, context-menu) !important;
         outline: auto 1px;
@@ -246,11 +273,12 @@ export function ClickToComponent({ editor = 'vscode', pathModifier }) {
       }
     </style>
 
-    <${FloatingPortal} key="click-to-component-portal">
+    <${FloatingPortal} key="click-to-component-portal" id=${portalId}>
       ${html`<${ContextMenu}
         key="click-to-component-contextmenu"
         onClose=${onClose}
         pathModifier=${pathModifier}
+        active=${active}
       />`}
     </${FloatingPortal}
   `

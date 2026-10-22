@@ -9,6 +9,9 @@ declare function ClickToComponent(props: ClickToComponentProps): React.ReactElem
 export type ClickToComponentProps = {
   editor?: Editor
   pathModifier?: PathModifier
+  active?: boolean
+  portalId?: string
+  onStatus?: (message: string) => void
 }
 
 export type Coords = [MouseEvent['pageX'], MouseEvent['pageY']]
@@ -18,4 +21,5 @@ export type Target = HTMLElement
 export type ContextMenuProps = {
   onClose?: () => void
   pathModifier?: PathModifier
+  active?: boolean
 }
