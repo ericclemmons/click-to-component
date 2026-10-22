@@ -32,7 +32,7 @@ import { getSourceForInstance } from './getSourceForInstance.js'
 // @ts-expect-error
 export const ContextMenu = React.forwardRef((props, ref) => {
   // @ts-expect-error
-  const { onClose, pathModifier } = props
+  const { onClose, pathModifier, active = false } = props
 
   const [target, setTarget] = React.useState(
     /** @type {HTMLElement | null} */
@@ -50,6 +50,10 @@ export const ContextMenu = React.forwardRef((props, ref) => {
   )
 
   const [open, setOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!active) setOpen(false)
+  }, [active])
 
   const listItemsRef = React.useRef(
     /** @type {Array<HTMLButtonElement | null>} */
@@ -110,11 +114,16 @@ export const ContextMenu = React.forwardRef((props, ref) => {
       /** @type {MouseEvent} */
       e
     ) {
-      if (!e.altKey) {
+      if (
+        (!e.altKey && !active) ||
+        !(e.target instanceof HTMLElement) ||
+        e.target.closest('[data-click-to-component-ignore]')
+      ) {
         return
       }
 
       e.preventDefault()
+      e.stopPropagation()
       mergedReferenceRef({
         getBoundingClientRect() {
           return {
@@ -135,11 +144,11 @@ export const ContextMenu = React.forwardRef((props, ref) => {
       if (e.target instanceof HTMLElement) setTarget(e.target)
     }
 
-    document.addEventListener('contextmenu', onContextMenu)
+    document.addEventListener('contextmenu', onContextMenu, { capture: true })
     return () => {
-      document.removeEventListener('contextmenu', onContextMenu)
+      document.removeEventListener('contextmenu', onContextMenu, { capture: true })
     }
-  }, [mergedReferenceRef])
+  }, [active, mergedReferenceRef])
 
   React.useLayoutEffect(() => {
     if (open) {
@@ -177,7 +186,7 @@ export const ContextMenu = React.forwardRef((props, ref) => {
 
   return html`
     <style key="click-to-component-contextmenu-style">
-      #floating-ui-root > div {
+      [data-click-to-component-overlay] {
         z-index: 2147483647;
       }
 
@@ -299,8 +308,13 @@ export const ContextMenu = React.forwardRef((props, ref) => {
 
     ${open &&
     html`
-        <${FloatingOverlay} key="click-to-component-overlay" lockScroll>
-          <${FloatingFocusManager} context=${context}>
+        <${FloatingOverlay}
+          key="click-to-component-overlay"
+          data-click-to-component-overlay
+          data-click-to-component-ignore=""
+          lockScroll
+        >
+          <${FloatingFocusManager} context=${context} modal=${!active}>
             <dialog
               ...${getFloatingProps({
                 ref: floating,
